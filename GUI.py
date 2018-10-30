@@ -17,16 +17,14 @@ class App:
         self.notebook.add(tab2, text='Arduino2')
         self.notebook.pack(expand=1, fill='both')
 
-        self.graph1 = Canvas(tab1, width=1000,height=500)
-        self.graph1.create_rectangle([10, 10, 650, 630], fill='blue') #placeholder voor grafiek
+        self.graph1 = Canvas(tab1, width=675,height=475)
+        self.graph1.create_rectangle([10, 10, 650, 450], fill='blue') #placeholder voor grafiek
         self.graph1.pack(fill=BOTH, expand=1)
 
-        self.graph2 = Canvas(tab2, width=1000,height=500)
-        self.graph2.create_rectangle([10, 10, 650, 630], fill='red') #placeholder voor grafiek
+        self.graph2 = Canvas(tab2, width=675,height=475)
+        self.graph2.create_rectangle([10, 10, 650, 450], fill='red') #placeholder voor grafiek
         self.graph2.pack(fill=BOTH, expand=1)
 
-        self.graph1.pack
-        self.graph2.pack
 
 
 root = Tk()
