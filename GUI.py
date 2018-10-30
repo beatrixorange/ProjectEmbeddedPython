@@ -5,7 +5,7 @@ from tkinter import ttk
 Er word gebruik gemaakt van een canvas om de grafieken op te tekenen
 en er zijn tabbladen gemaakt voor de verschillende arduino's"""
 class App:
-
+    #TODO implementeer een grid in plaats van pack
     def __init__(self, master):
         self.master = master
         master.title('Centrale')
