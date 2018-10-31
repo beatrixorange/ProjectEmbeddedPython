@@ -61,4 +61,9 @@ class App:
     def instellingen(self):
         print("Naar instelingen pagina gaan")
 
+root = Tk()
+app = App(root)
+app.initialiseren()
+root.mainloop()
+
 
