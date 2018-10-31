@@ -21,7 +21,6 @@ class App:
         self.graph4 = Canvas(self.tab4, width=675, height=475)
         self.graph5 = Canvas(self.tab5, width=675, height=475)
 
-
     def initialiseren(self):
         self.notebook.add(self.tab1, text='Arduino1')
         self.notebook.add(self.tab2, text='Arduino2')
@@ -63,10 +62,3 @@ class App:
         print("Naar instelingen pagina gaan")
 
 
-
-
-
-root = Tk()
-app = App(root)
-app.initialiseren()
-root.mainloop()
