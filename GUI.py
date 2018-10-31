@@ -37,16 +37,16 @@ class App:
         self.graph4.grid(column=4, row=0)
         self.graph5.grid(column=5, row=0)
 
-        self.uitrollen = Button(app.master, text="  Uitrollen   ", command=app.rolluik_uitrollen)
+        self.uitrollen = Button(self.master, text="  Uitrollen   ", command=self.rolluik_uitrollen)
         self.uitrollen.grid(column=0, row=1,sticky=W)
 
-        self.inhalen = Button(app.master, text="    Inhalen    ", command=app.rolluiken_inhalen)
+        self.inhalen = Button(self.master, text="    Inhalen    ", command=self.rolluiken_inhalen)
         self.inhalen.grid(column=0, row=1,sticky=W,padx=100)
 
-        self.stoppen = Button(app.master, text="    Stoppen    ", command=app.stoppen)
+        self.stoppen = Button(self.master, text="    Stoppen    ", command=self.stoppen)
         self.stoppen.grid(column=0, row=1,sticky=W,padx=200)
 
-        self.instellingen = Button(app.master, text="   Instellingen    ", command=app.instellingen)
+        self.instellingen = Button(self.master, text="   Instellingen    ", command=self.instellingen)
         self.instellingen.grid(column=1,row=0,sticky=N,pady=25)
 
     def rolluik_uitrollen(self):
@@ -61,9 +61,6 @@ class App:
     def instellingen(self):
         print("Naar instelingen pagina gaan")
 
-root = Tk()
-app = App(root)
-app.initialiseren()
-root.mainloop()
+
 
 
