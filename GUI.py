@@ -25,12 +25,32 @@ class App(tk.Tk):
         self.frames["Instellingen"].grid(row=0, column=0, sticky="nsew")
 
         self.show_frame("StartPage")
-        self.addtabs()
+
 
     def show_frame(self, page_name):
         '''Show a frame for the given page name'''
         frame = self.frames[page_name]
         frame.tkraise()
+
+
+
+class StartPage(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        self.addtabs()
+
+        button1 = tk.Button(self, text="Instellingen", command=lambda: self.instellingen())
+        button1.pack(side="right", padx=30)
+
+        uitrollen = tk.Button(self, text="  Uitrollen   ", command=lambda: self.rolluik_uitrollen())
+        uitrollen.pack(side="left", padx=10)
+
+        inhalen = tk.Button(self, text="  Inhalen   ", command=lambda: self.rolluik_inhalen())
+        inhalen.pack(side="left", padx=10)
+
+        stoppen = tk.Button(self, text="  Stoppen   ", command=lambda: self.stoppen())
+        stoppen.pack(side="left", padx=10)
 
     def addtabs(self):
         self.notebook = ttk.Notebook(self.controller)
@@ -63,37 +83,24 @@ class App(tk.Tk):
         self.graph5 = Canvas(self.tab5, width=675, height=475)
         self.graph5.grid(column=5, row=0)
 
-class StartPage(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.controller = controller
+    def instellingen(self):
+        self.notebook.hide(self.tab1)
+        self.notebook.hide(self.tab2)
+        self.notebook.hide(self.tab3)
+        self.notebook.hide(self.tab4)
+        self.notebook.hide(self.tab5)
+        self.controller.show_frame("Instellingen")
 
-        button1 = tk.Button(self, text="Instellingen", command=lambda: instellingen())
-        button1.pack(side="right", padx=30)
+    def rolluik_uitrollen(self):
+        print("Aan het uitrollen")
 
-        def instellingen():
-            app.notebook.destroy()
-            controller.show_frame("Instellingen")
+    def rolluik_inhalen(self):
+        print("Aan het inhalen")
 
-        uitrollen = tk.Button(self, text="  Uitrollen   ", command=lambda: rolluik_uitrollen(self))
-        uitrollen.pack(side="left", padx=10)
+    def stoppen(self):
+        print("De rolluiken stoppen")
 
-        inhalen = tk.Button(self, text="  Inhalen   ", command=lambda: rolluik_inhalen(self))
-        inhalen.pack(side="left", padx=10)
-
-        stoppen = tk.Button(self, text="  Stoppen   ", command=lambda: stoppen(self))
-        stoppen.pack(side="left", padx=10)
-
-        def rolluik_uitrollen(self):
-            print("Aan het uitrollen")
-
-        def rolluik_inhalen(self):
-            print("Aan het inhalen")
-
-        def stoppen(self):
-            print("De rolluiken stoppen")
-
-class Instellingen(tk.Frame):
+class Instellingen(StartPage):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -101,19 +108,16 @@ class Instellingen(tk.Frame):
         label = tk.Label(self, text="Instellingen")
         label.pack(side="top", fill="x", pady=10)
 
-        startpage = tk.Button(self, text="Terug", command=lambda: start())
+        startpage = tk.Button(self, text="Terug", command=lambda: self.start())
         startpage.pack(side="left", padx=10)
 
-        def start():
-            controller.show_frame("StartPage")
-            app.addtabs()
-
-        toepassen = tk.Button(self, text="Toepassen", command=lambda: toepassen(self))
+        toepassen = tk.Button(self, text="Toepassen", command=lambda: self.toepassen())
         toepassen.pack(side="right", padx=10)
 
-        def toepassen(self):
-            print("De instellingen zijn toegepast.")
+    def start(self):
+        self.controller.show_frame("StartPage")
+        self.addtabs()
 
-if __name__ == "__main__":
-    app = App()
-    app.mainloop()
+    def toepassen(self):
+        print("De instellingen zijn toegepast.")
+
