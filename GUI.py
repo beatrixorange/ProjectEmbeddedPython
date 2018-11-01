@@ -101,7 +101,7 @@ class Instellingen(tk.Frame):
         label = tk.Label(self, text="Instellingen", font='Helvetica 18 bold')
         label.pack(side="top", fill="x", pady=10)
 
-        uitrol_label = tk.Label(self, text="Maximale uitrolstand")
+        uitrol_label = tk.Label(self, text="Maximale uitrolstand:")
         uitrol_label.pack()
         uitrol_choiceVar = tk.StringVar()
         uitrol_choices = ("10", "20", "30", "40")
@@ -109,12 +109,12 @@ class Instellingen(tk.Frame):
         uitrol_cb = ttk.Combobox(self, textvariable=uitrol_choiceVar, values=uitrol_choices)
         uitrol_cb.pack()
 
-        inrol_label = tk.Label(self, text="Maximale inrolstand")
+        inrol_label = tk.Label(self, text="Maximale inrolstand:")
         inrol_label.pack()
         inrol_choiceVar = tk.StringVar()
         inrol_choices = ("10", "20", "30", "40")
         inrol_choiceVar.set(inrol_choices[0])
-        inrol_cb = ttk.Combobox(self, textvariable=inrol_choiceVar, values=inrol_choices)
+        inrol_cb = ttk.Combobox(self, textvariable=inrol_choiceVar, value=inrol_choices)
         inrol_cb.pack()
 
         startpage = tk.Button(self, text="Terug", command=lambda: start())
@@ -128,7 +128,8 @@ class Instellingen(tk.Frame):
         toepassen.pack(side="right", padx=10)
 
         def toepassen(self):
-            print("De instellingen zijn toegepast.")
+            print("De maximale uirolstand is nu:", uitrol_choiceVar.get())
+            print("De maximale inrolstand is nu:", inrol_choiceVar.get())
 
 if __name__ == "__main__":
     app = App()
