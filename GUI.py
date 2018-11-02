@@ -79,14 +79,14 @@ class StartPage(tk.Frame):
         self.graph1.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH)
 
         #test graph 2
-        Data = {'Tijd': [14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+        Data2 = {'Tijd': [14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
                 'Lichtintensiteit': [10, 8, 6, 3, 2.5, 2, 1.5, 1, 1, 1]}
-        df = DataFrame(Data, columns=['Tijd', 'Lichtintensiteit'])
-        df = df[['Tijd', 'Lichtintensiteit']].groupby('Tijd').sum()
-        figure = plt.Figure(figsize=(7, 5), dpi=100)
-        ax = figure.add_subplot(111)
-        self.graph2 = FigureCanvasTkAgg(figure, self.tab2)
-        df.plot(kind='line', legend=True, ax=ax, color='b', fontsize=10)
+        df2 = DataFrame(Data2, columns=['Tijd', 'Lichtintensiteit'])
+        df2 = df2[['Tijd', 'Lichtintensiteit']].groupby('Tijd').sum()
+        figure2 = plt.Figure(figsize=(7, 5), dpi=100)
+        ax2 = figure2.add_subplot(111)
+        self.graph2 = FigureCanvasTkAgg(figure2, self.tab2)
+        df2.plot(kind='line', legend=True, ax=ax2, color='b', fontsize=10)
         self.graph2.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH)
 
         self.graph3 = Canvas(self.tab3, width=675, height=475)
@@ -105,6 +105,7 @@ class StartPage(tk.Frame):
         self.notebook.hide(self.tab4)
         self.notebook.hide(self.tab5)
         self.controller.show_frame("Instellingen")
+        self.notebook.pack_forget()
 
     def rolluik_uitrollen(self):
         print("Aan het uitrollen")
@@ -148,4 +149,3 @@ class Instellingen(StartPage):
     def toepassen(self):
         print("De maximale uirolstand is nu:", self.uitrol_choiceVar.get())
         print("De maximale inrolstand is nu:", self.inrol_choiceVar.get())
-
