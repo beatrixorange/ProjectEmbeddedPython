@@ -1,6 +1,9 @@
 from tkinter import *
 from tkinter import ttk
 import tkinter as tk
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from pandas import DataFrame
+import matplotlib.pyplot as plt
 
 """In deze klasse wordt de layout geinitialiseerd. 
 Er word gebruik gemaakt van een canvas om de grafieken op te tekenen
@@ -64,13 +67,27 @@ class StartPage(tk.Frame):
         self.notebook.add(self.tab5, text='Arduino5')
         self.notebook.pack()
 
-        self.graph1 = Canvas(self.tab1, width=675, height=475)
-        self.graph1.create_rectangle([10, 10, 650, 450], fill='blue')  # placeholder voor grafiek
-        self.graph1.grid(column=1, row=0)
+        #test graph
+        Data = {'Tijd': [14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+                'Temperatuur': [11, 10, 9, 8, 7, 5, 4, 4, 4, 4]}
+        df = DataFrame(Data, columns=['Tijd', 'Temperatuur'])
+        df = df[['Tijd', 'Temperatuur']].groupby('Tijd').sum()
+        figure = plt.Figure(figsize=(7, 5), dpi=100)
+        ax = figure.add_subplot(111)
+        self.graph1 = FigureCanvasTkAgg(figure, self.tab1)
+        df.plot(kind='line', legend=True, ax=ax, color='b', fontsize=10)
+        self.graph1.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH)
 
-        self.graph2 = Canvas(self.tab2, width=675, height=475)
-        self.graph2.create_rectangle([10, 10, 650, 450], fill='red')  # placeholder voor grafiek
-        self.graph2.grid(column=2, row=0)
+        #test graph 2
+        Data = {'Tijd': [14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+                'Lichtintensiteit': [10, 8, 6, 3, 2.5, 2, 1.5, 1, 1, 1]}
+        df = DataFrame(Data, columns=['Tijd', 'Lichtintensiteit'])
+        df = df[['Tijd', 'Lichtintensiteit']].groupby('Tijd').sum()
+        figure = plt.Figure(figsize=(7, 5), dpi=100)
+        ax = figure.add_subplot(111)
+        self.graph2 = FigureCanvasTkAgg(figure, self.tab2)
+        df.plot(kind='line', legend=True, ax=ax, color='b', fontsize=10)
+        self.graph2.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH)
 
         self.graph3 = Canvas(self.tab3, width=675, height=475)
         self.graph3.grid(column=3, row=0)
