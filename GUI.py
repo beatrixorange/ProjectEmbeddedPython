@@ -22,7 +22,7 @@ class App(tk.Tk):
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
-        self.frames = {}
+        self.frames = dict()
         self.frames["StartPage"] = StartPage(parent=container, controller=self)
         self.frames["Arduino1"] = Arduino1(parent=container, controller=self)
         self.frames["Arduino2"] = Arduino2(parent=container, controller=self)
@@ -121,8 +121,10 @@ class Arduino1(StartPage):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-
         self.add_ui()
+
+        label = tk.Label(self, text="Arduino 1", font='Helvetica 18 bold')
+        label.grid(column=1, row=0, sticky=N)
 
         #  test graph
         data = {'Tijd': [14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
@@ -141,8 +143,10 @@ class Arduino2(StartPage):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-
         self.add_ui()
+
+        label = tk.Label(self, text="Arduino 2", font='Helvetica 18 bold')
+        label.grid(column=1, row=0, sticky=N)
 
         data2 = {'Tijd': [14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
                  'Lichtintensiteit': [10, 8, 6, 3, 2.5, 2, 1.5, 1, 1, 1]}
@@ -161,12 +165,18 @@ class Arduino3(StartPage):
         self.controller = controller
         self.add_ui()
 
+        label = tk.Label(self, text="Arduino 3", font='Helvetica 18 bold')
+        label.grid(column=1, row=0, sticky=N)
+
 
 class Arduino4(StartPage):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.add_ui()
+
+        label = tk.Label(self, text="Arduino 4", font='Helvetica 18 bold')
+        label.grid(column=1, row=0, sticky=N)
 
 
 class Arduino5(StartPage):
@@ -175,6 +185,9 @@ class Arduino5(StartPage):
         self.controller = controller
         self.add_ui()
 
+        label = tk.Label(self, text="Arduino 5", font='Helvetica 18 bold')
+        label.grid(column=1, row=0, sticky=N)
+
 
 class Instellingen(StartPage):
     def __init__(self, parent, controller):
@@ -182,25 +195,25 @@ class Instellingen(StartPage):
         self.controller = controller
 
         label = tk.Label(self, text="Instellingen", font='Helvetica 18 bold')
-        label.grid(column=1, row=0, sticky=N)
+        label.grid(column=2, row=0, sticky=N+W+E)
 
         self.uitrol_label = tk.Label(self, text=" Maximale uitrolstand:")
         self.uitrol_label.grid(column=1, row=0, sticky=N, pady=50)
         self.uitrol_choiceVar = tk.StringVar()
         self.uitrol = ttk.Entry(self, textvariable=self.uitrol_choiceVar)
-        self.uitrol.grid(column=2, row=0, sticky=N, pady=50)
+        self.uitrol.grid(column=2, row=0, sticky=N, pady=50, padx=10)
 
         self.inrol_label = tk.Label(self, text="Maximale inrolstand:")
-        self.inrol_label.grid(column=1, row=0,sticky=N, pady=80)
+        self.inrol_label.grid(column=1, row=0, sticky=N, pady=80)
         self.inrol_choiceVar = tk.StringVar()
         self.inrol = ttk.Entry(self, textvariable=self.inrol_choiceVar)
-        self.inrol.grid(column=2, row=0, sticky=N, pady=80)
+        self.inrol.grid(column=2, row=0, sticky=N, pady=80, padx=10)
 
         toepassen = tk.Button(self, text="Toepassen", command=lambda: self.toepassen())
-        toepassen.grid(column=2,row=0,sticky=W, pady=150,padx=10)
+        toepassen.grid(column=3, row=0, sticky=N, pady=80)
 
         terug = tk.Button(self, text="     Terug     ", command=lambda: self.home())
-        terug.grid(column=1, row=0, sticky=W, pady=150, padx=10)
+        terug.grid(column=2, row=0, sticky=N, pady=150, padx=10)
 
     def toepassen(self):
         print("De maximale uirolstand is nu:", self.uitrol_choiceVar.get())
