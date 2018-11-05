@@ -195,25 +195,25 @@ class Instellingen(StartPage):
         self.controller = controller
 
         label = tk.Label(self, text="Instellingen", font='Helvetica 18 bold')
-        label.grid(column=2, row=0, sticky=N+W+E)
+        label.pack(side="top", fill="x", pady=10)
 
         self.uitrol_label = tk.Label(self, text=" Maximale uitrolstand:")
-        self.uitrol_label.grid(column=1, row=0, sticky=N, pady=50)
+        self.uitrol_label.pack()
         self.uitrol_choiceVar = tk.StringVar()
         self.uitrol = ttk.Entry(self, textvariable=self.uitrol_choiceVar)
-        self.uitrol.grid(column=2, row=0, sticky=N, pady=50, padx=10)
+        self.uitrol.pack(pady=10)
 
         self.inrol_label = tk.Label(self, text="Maximale inrolstand:")
-        self.inrol_label.grid(column=1, row=0, sticky=N, pady=80)
+        self.inrol_label.pack()
         self.inrol_choiceVar = tk.StringVar()
         self.inrol = ttk.Entry(self, textvariable=self.inrol_choiceVar)
-        self.inrol.grid(column=2, row=0, sticky=N, pady=80, padx=10)
+        self.inrol.pack(pady=10)
 
         toepassen = tk.Button(self, text="Toepassen", command=lambda: self.toepassen())
-        toepassen.grid(column=3, row=0, sticky=N, pady=80)
+        toepassen.pack(fill="y", pady=10)
 
         terug = tk.Button(self, text="     Terug     ", command=lambda: self.home())
-        terug.grid(column=2, row=0, sticky=N, pady=150, padx=10)
+        terug.pack(fill="y", pady=10)
 
     def toepassen(self):
         print("De maximale uirolstand is nu:", self.uitrol_choiceVar.get())
