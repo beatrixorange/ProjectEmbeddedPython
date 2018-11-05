@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 Er word gebruik gemaakt van een canvas om de grafieken op te tekenen
 en er zijn tabbladen gemaakt voor de verschillende arduino's"""
 
-class App(tk.Tk):
+class Controller(tk.Tk):
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
@@ -115,6 +115,19 @@ class StartPage(tk.Frame):
     def home(self):
         self.controller.show_frame("StartPage")
 
+    def rolluik_uitrollen(self):
+        print("Aan het uitrollen")
+
+    def rolluik_inhalen(self):
+        print("Aan het inhalen")
+
+    def stoppen(self):
+        print("De rolluiken stoppen")
+
+    def toepassen(self):
+        print("De maximale uirolstand is nu:", self.uitrol_choiceVar.get())
+        print("De maximale inrolstand is nu:", self.inrol_choiceVar.get())
+
 
 class Arduino1(StartPage):
     def __init__(self, parent, controller):
@@ -134,15 +147,6 @@ class Arduino1(StartPage):
         df.plot(kind='line', legend=True, ax=ax, color='b', fontsize=10)
         self.graph1.get_tk_widget().grid(column=0, row=0)
 
-    def rolluik_uitrollen(self):
-        print("Aan het uitrollen")
-
-    def rolluik_inhalen(self):
-        print("Aan het inhalen")
-
-    def stoppen(self):
-        print("De rolluiken stoppen")
-
 class Arduino2(StartPage):
 
     def __init__(self, parent, controller):
@@ -160,14 +164,6 @@ class Arduino2(StartPage):
         self.graph2 = FigureCanvasTkAgg(figure2, self)
         df2.plot(kind='line', legend=True, ax=ax2, color='b', fontsize=10)
         self.graph2.get_tk_widget().grid(column=0, row=0)
-
-
-    def start(self):
-        self.controller.show_frame("StartPage")
-
-    def toepassen(self):
-        print("De maximale uirolstand is nu:", self.uitrol_choiceVar.get())
-        print("De maximale inrolstand is nu:", self.inrol_choiceVar.get())
 
 class Arduino3(StartPage):
     def __init__(self, parent, controller):
