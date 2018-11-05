@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 Er word gebruik gemaakt van een canvas om de grafieken op te tekenen
 en er zijn tabbladen gemaakt voor de verschillende arduino's"""
 
-class Controller(tk.Tk):
+class App(tk.Tk):
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
@@ -28,12 +28,15 @@ class Controller(tk.Tk):
         self.frames["Arduino3"] = Arduino3(parent=container, controller=self)
         self.frames["Arduino4"] = Arduino4(parent=container, controller=self)
         self.frames["Arduino5"] = Arduino5(parent=container, controller=self)
+        self.frames["Instellingen"] = Instellingen(parent=container, controller=self)
+
         self.frames["StartPage"].grid(row=0, column=0, sticky="nsew")
         self.frames["Arduino1"].grid(row=0, column=0, sticky="nsew")
         self.frames["Arduino2"].grid(row=0, column=0, sticky="nsew")
         self.frames["Arduino3"].grid(row=0, column=0, sticky="nsew")
         self.frames["Arduino4"].grid(row=0, column=0, sticky="nsew")
         self.frames["Arduino5"].grid(row=0, column=0, sticky="nsew")
+        self.frames["Instellingen"].grid(row=0, column=0, sticky="nsew")
 
         self.show_frame("StartPage")
 
@@ -51,51 +54,49 @@ class StartPage(tk.Frame):
         label = tk.Label(self, text="Startpagina", font='Helvetica 18 bold')
         label.pack(side="top", fill="x", pady=10)
 
-        button1 = tk.Button(self, text="Arduino 1", command=lambda: self.arduino1())
-        button1.pack(side="top", pady=5)
+        a1 = tk.Button(self, text="Arduino 1", command=lambda: self.arduino1())
+        a1.pack(side="top", pady=5)
 
-        uitrollen = tk.Button(self, text="Arduino 2", command=lambda: self.arduino2())
-        uitrollen.pack(side="top", pady=5)
+        a2 = tk.Button(self, text="Arduino 2", command=lambda: self.arduino2())
+        a2.pack(side="top", pady=5)
 
-        inhalen = tk.Button(self, text="Arduino 3", command=lambda: self.arduino3())
-        inhalen.pack(side="top", pady=5)
+        a3 = tk.Button(self, text="Arduino 3", command=lambda: self.arduino3())
+        a3.pack(side="top", pady=5)
 
-        stoppen = tk.Button(self, text="Arduino 4", command=lambda: self.arduino4())
-        stoppen.pack(side="top", pady=5)
+        a4 = tk.Button(self, text="Arduino 4", command=lambda: self.arduino4())
+        a4.pack(side="top", pady=5)
 
-        stoppen = tk.Button(self, text="Arduino 5", command=lambda: self.arduino5())
-        stoppen.pack(side="top", pady=5)
+        a5 = tk.Button(self, text="Arduino 5", command=lambda: self.arduino5())
+        a5.pack(side="top", pady=5)
+
+        instellen = tk.Button(self, text="Instellingen", command=lambda: self.instellingen())
+        instellen.pack(side="top", pady=5)
+
 
     def add_ui(self):
-        uitrollen = tk.Button(self, text="  Uitrollen   ", command=lambda: self.rolluik_uitrollen())
+        uitrollen = tk.Button(self, text="  Uitrollen   ", command=lambda: rolluik_uitrollen())
         uitrollen.grid(column=1,row=0,sticky=N,pady=150)
 
-        inhalen = tk.Button(self, text="   Inhalen    ", command=lambda: self.rolluik_inhalen())
+        inhalen = tk.Button(self, text="   Inhalen    ", command=lambda: rolluik_inhalen())
         inhalen.grid(column=1,row=0,sticky=N,pady=180)
 
-        stoppen = tk.Button(self, text="  Stoppen   ", command=lambda: self.stoppen())
+        stoppen = tk.Button(self, text="  Stoppen   ", command=lambda: stoppen())
         stoppen.grid(column=1,row=0,sticky=N,pady=210)
 
-        button1 = tk.Button(self, text="     Terug     ", command=lambda: self.home())
-        button1.grid(column=1,row=0,sticky=N,pady=240)
+        terug = tk.Button(self, text="     Terug     ", command=lambda: home())
+        terug.grid(column=1,row=0,sticky=N,pady=240)
 
-        label = tk.Label(self, text="Instellingen", font='Helvetica 18 bold')
-        label.grid(column=1,row=0,sticky=N)
+        def rolluik_uitrollen():
+            print("Aan het uitrollen")
 
-        self.uitrol_label = tk.Label(self, text=" Maximale uitrolstand:")
-        self.uitrol_label.grid(column=1,row=0,sticky=N,pady=50)
-        self.uitrol_choiceVar = tk.StringVar()
-        self.uitrol = ttk.Entry(self, textvariable=self.uitrol_choiceVar)
-        self.uitrol.grid(column=2,row=0,sticky=N,pady=50)
+        def rolluik_inhalen():
+            print("Aan het inhalen")
 
-        self.inrol_label = tk.Label(self, text="Maximale inrolstand:")
-        self.inrol_label.grid(column=1,row=0,sticky=N,pady=80)
-        self.inrol_choiceVar = tk.StringVar()
-        self.inrol = ttk.Entry(self, textvariable=self.inrol_choiceVar)
-        self.inrol.grid(column=2,row=0,sticky=N,pady=80)
+        def stoppen():
+            print("De rolluiken stoppen")
 
-        toepassen = tk.Button(self, text="Toepassen", command=lambda: self.toepassen())
-        toepassen.grid(column=3,row=0,sticky=N,pady=75,padx=10)
+        def home():
+            self.controller.show_frame("StartPage")
 
     def arduino1(self):
         self.controller.show_frame("Arduino1")
@@ -115,18 +116,8 @@ class StartPage(tk.Frame):
     def home(self):
         self.controller.show_frame("StartPage")
 
-    def rolluik_uitrollen(self):
-        print("Aan het uitrollen")
-
-    def rolluik_inhalen(self):
-        print("Aan het inhalen")
-
-    def stoppen(self):
-        print("De rolluiken stoppen")
-
-    def toepassen(self):
-        print("De maximale uirolstand is nu:", self.uitrol_choiceVar.get())
-        print("De maximale inrolstand is nu:", self.inrol_choiceVar.get())
+    def instellingen(self):
+        self.controller.show_frame("Instellingen")
 
 
 class Arduino1(StartPage):
@@ -169,7 +160,6 @@ class Arduino3(StartPage):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-
         self.add_ui()
 
 class Arduino4(StartPage):
@@ -183,3 +173,33 @@ class Arduino5(StartPage):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.add_ui()
+
+class Instellingen(StartPage):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+
+        label = tk.Label(self, text="Instellingen", font='Helvetica 18 bold')
+        label.grid(column=1,row=0,sticky=N)
+
+        self.uitrol_label = tk.Label(self, text=" Maximale uitrolstand:")
+        self.uitrol_label.grid(column=1,row=0,sticky=N,pady=50)
+        self.uitrol_choiceVar = tk.StringVar()
+        self.uitrol = ttk.Entry(self, textvariable=self.uitrol_choiceVar)
+        self.uitrol.grid(column=2,row=0,sticky=N,pady=50)
+
+        self.inrol_label = tk.Label(self, text="Maximale inrolstand:")
+        self.inrol_label.grid(column=1,row=0,sticky=N,pady=80)
+        self.inrol_choiceVar = tk.StringVar()
+        self.inrol = ttk.Entry(self, textvariable=self.inrol_choiceVar)
+        self.inrol.grid(column=2,row=0,sticky=N,pady=80)
+
+        toepassen = tk.Button(self, text="Toepassen", command=lambda: self.toepassen())
+        toepassen.grid(column=2,row=0,sticky=W,pady=150,padx=10)
+
+        terug = tk.Button(self, text="     Terug     ", command=lambda: self.home())
+        terug.grid(column=1, row=0, sticky=W, pady=150, padx=10)
+
+    def toepassen(self):
+        print("De maximale uirolstand is nu:", self.uitrol_choiceVar.get())
+        print("De maximale inrolstand is nu:", self.inrol_choiceVar.get())
