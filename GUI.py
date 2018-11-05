@@ -126,7 +126,7 @@ class Arduino1(StartPage):
         label = tk.Label(self, text="Arduino 1", font='Helvetica 18 bold')
         label.grid(column=1, row=0, sticky=N)
 
-        #  test graph
+        #  Voorbeeld grafiek temperatuur
         data = {'Tijd': [14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
                 'Temperatuur': [11, 10, 9, 8, 7, 5, 4, 4, 4, 4]}
         df = DataFrame(data, columns=['Tijd', 'Temperatuur'])
@@ -148,6 +148,7 @@ class Arduino2(StartPage):
         label = tk.Label(self, text="Arduino 2", font='Helvetica 18 bold')
         label.grid(column=1, row=0, sticky=N)
 
+        #  Voorbeeld grafiek lichtintensiteit
         data2 = {'Tijd': [14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
                  'Lichtintensiteit': [10, 8, 6, 3, 2.5, 2, 1.5, 1, 1, 1]}
         df2 = DataFrame(data2, columns=['Tijd', 'Lichtintensiteit'])
@@ -168,6 +169,11 @@ class Arduino3(StartPage):
         label = tk.Label(self, text="Arduino 3", font='Helvetica 18 bold')
         label.grid(column=1, row=0, sticky=N)
 
+        #  Empty graph
+        figure = plt.Figure(figsize=(7, 5), dpi=100)
+        self.graph = FigureCanvasTkAgg(figure, self)
+        self.graph.get_tk_widget().grid(column=0, row=0)
+
 
 class Arduino4(StartPage):
     def __init__(self, parent, controller):
@@ -178,6 +184,11 @@ class Arduino4(StartPage):
         label = tk.Label(self, text="Arduino 4", font='Helvetica 18 bold')
         label.grid(column=1, row=0, sticky=N)
 
+        #  Empty graph
+        figure = plt.Figure(figsize=(7, 5), dpi=100)
+        self.graph = FigureCanvasTkAgg(figure, self)
+        self.graph.get_tk_widget().grid(column=0, row=0)
+
 
 class Arduino5(StartPage):
     def __init__(self, parent, controller):
@@ -187,6 +198,11 @@ class Arduino5(StartPage):
 
         label = tk.Label(self, text="Arduino 5", font='Helvetica 18 bold')
         label.grid(column=1, row=0, sticky=N)
+
+        #  Empty graph
+        figure = plt.Figure(figsize=(7, 5), dpi=100)
+        self.graph = FigureCanvasTkAgg(figure, self)
+        self.graph.get_tk_widget().grid(column=0, row=0)
 
 
 class Instellingen(StartPage):
