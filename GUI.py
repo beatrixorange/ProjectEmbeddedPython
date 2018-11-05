@@ -10,7 +10,7 @@ Er word gebruik gemaakt van een canvas om de grafieken op te tekenen
 en er zijn tabbladen gemaakt voor de verschillende arduino's"""
 
 
-class App(tk.Tk):
+class Controller(tk.Tk):
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
