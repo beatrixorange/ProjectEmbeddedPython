@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 Er word gebruik gemaakt van een canvas om de grafieken op te tekenen
 en er zijn tabbladen gemaakt voor de verschillende arduino's"""
 
+
 class App(tk.Tk):
 
     def __init__(self, *args, **kwargs):
@@ -41,7 +42,7 @@ class App(tk.Tk):
         self.show_frame("StartPage")
 
     def show_frame(self, page_name):
-        '''Show a frame for the given page name'''
+        """"Show a frame for the given page name"""""
         frame = self.frames[page_name]
         frame.tkraise()
 
@@ -72,31 +73,30 @@ class StartPage(tk.Frame):
         instellen = tk.Button(self, text="Instellingen", command=lambda: self.instellingen())
         instellen.pack(side="top", pady=5)
 
-
     def add_ui(self):
-        uitrollen = tk.Button(self, text="  Uitrollen   ", command=lambda: rolluik_uitrollen())
-        uitrollen.grid(column=1,row=0,sticky=N,pady=150)
+        uitrollen = tk.Button(self, text="  Uitrollen   ", command=lambda: self.rolluik_uitrollen())
+        uitrollen.grid(column=1, row=0, sticky=N, pady=150)
 
-        inhalen = tk.Button(self, text="   Inhalen    ", command=lambda: rolluik_inhalen())
-        inhalen.grid(column=1,row=0,sticky=N,pady=180)
+        inhalen = tk.Button(self, text="   Inhalen    ", command=lambda: self.rolluik_inhalen())
+        inhalen.grid(column=1, row=0, sticky=N, pady=180)
 
-        stoppen = tk.Button(self, text="  Stoppen   ", command=lambda: stoppen())
-        stoppen.grid(column=1,row=0,sticky=N,pady=210)
+        stoppen = tk.Button(self, text="  Stoppen   ", command=lambda: self.stoppen())
+        stoppen.grid(column=1, row=0, sticky=N, pady=210)
 
-        terug = tk.Button(self, text="     Terug     ", command=lambda: home())
-        terug.grid(column=1,row=0,sticky=N,pady=240)
+        terug = tk.Button(self, text="     Terug     ", command=lambda: self.home())
+        terug.grid(column=1, row=0, sticky=N, pady=240)
 
-        def rolluik_uitrollen():
-            print("Aan het uitrollen")
+    def rolluik_uitrollen(self):
+        print("Aan het uitrollen")
 
-        def rolluik_inhalen():
-            print("Aan het inhalen")
+    def rolluik_inhalen(self):
+        print("Aan het inhalen")
 
-        def stoppen():
-            print("De rolluiken stoppen")
+    def stoppen(self):
+        print("De rolluiken stoppen")
 
-        def home():
-            self.controller.show_frame("StartPage")
+    def home(self):
+        self.controller.show_frame("StartPage")
 
     def arduino1(self):
         self.controller.show_frame("Arduino1")
@@ -113,9 +113,6 @@ class StartPage(tk.Frame):
     def arduino5(self):
         self.controller.show_frame("Arduino5")
 
-    def home(self):
-        self.controller.show_frame("StartPage")
-
     def instellingen(self):
         self.controller.show_frame("Instellingen")
 
@@ -127,16 +124,17 @@ class Arduino1(StartPage):
 
         self.add_ui()
 
-        #test graph
-        Data = {'Tijd': [14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+        #  test graph
+        data = {'Tijd': [14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
                 'Temperatuur': [11, 10, 9, 8, 7, 5, 4, 4, 4, 4]}
-        df = DataFrame(Data, columns=['Tijd', 'Temperatuur'])
+        df = DataFrame(data, columns=['Tijd', 'Temperatuur'])
         df = df[['Tijd', 'Temperatuur']].groupby('Tijd').sum()
         figure = plt.Figure(figsize=(7, 5), dpi=100)
         ax = figure.add_subplot(111)
         self.graph1 = FigureCanvasTkAgg(figure, self)
         df.plot(kind='line', legend=True, ax=ax, color='b', fontsize=10)
         self.graph1.get_tk_widget().grid(column=0, row=0)
+
 
 class Arduino2(StartPage):
 
@@ -146,9 +144,9 @@ class Arduino2(StartPage):
 
         self.add_ui()
 
-        Data2 = {'Tijd': [14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-                'Lichtintensiteit': [10, 8, 6, 3, 2.5, 2, 1.5, 1, 1, 1]}
-        df2 = DataFrame(Data2, columns=['Tijd', 'Lichtintensiteit'])
+        data2 = {'Tijd': [14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+                 'Lichtintensiteit': [10, 8, 6, 3, 2.5, 2, 1.5, 1, 1, 1]}
+        df2 = DataFrame(data2, columns=['Tijd', 'Lichtintensiteit'])
         df2 = df2[['Tijd', 'Lichtintensiteit']].groupby('Tijd').sum()
         figure2 = plt.Figure(figsize=(7, 5), dpi=100)
         ax2 = figure2.add_subplot(111)
@@ -156,11 +154,13 @@ class Arduino2(StartPage):
         df2.plot(kind='line', legend=True, ax=ax2, color='b', fontsize=10)
         self.graph2.get_tk_widget().grid(column=0, row=0)
 
+
 class Arduino3(StartPage):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.add_ui()
+
 
 class Arduino4(StartPage):
     def __init__(self, parent, controller):
@@ -168,11 +168,13 @@ class Arduino4(StartPage):
         self.controller = controller
         self.add_ui()
 
+
 class Arduino5(StartPage):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.add_ui()
+
 
 class Instellingen(StartPage):
     def __init__(self, parent, controller):
@@ -180,22 +182,22 @@ class Instellingen(StartPage):
         self.controller = controller
 
         label = tk.Label(self, text="Instellingen", font='Helvetica 18 bold')
-        label.grid(column=1,row=0,sticky=N)
+        label.grid(column=1, row=0, sticky=N)
 
         self.uitrol_label = tk.Label(self, text=" Maximale uitrolstand:")
-        self.uitrol_label.grid(column=1,row=0,sticky=N,pady=50)
+        self.uitrol_label.grid(column=1, row=0, sticky=N, pady=50)
         self.uitrol_choiceVar = tk.StringVar()
         self.uitrol = ttk.Entry(self, textvariable=self.uitrol_choiceVar)
-        self.uitrol.grid(column=2,row=0,sticky=N,pady=50)
+        self.uitrol.grid(column=2, row=0, sticky=N, pady=50)
 
         self.inrol_label = tk.Label(self, text="Maximale inrolstand:")
-        self.inrol_label.grid(column=1,row=0,sticky=N,pady=80)
+        self.inrol_label.grid(column=1, row=0,sticky=N, pady=80)
         self.inrol_choiceVar = tk.StringVar()
         self.inrol = ttk.Entry(self, textvariable=self.inrol_choiceVar)
-        self.inrol.grid(column=2,row=0,sticky=N,pady=80)
+        self.inrol.grid(column=2, row=0, sticky=N, pady=80)
 
         toepassen = tk.Button(self, text="Toepassen", command=lambda: self.toepassen())
-        toepassen.grid(column=2,row=0,sticky=W,pady=150,padx=10)
+        toepassen.grid(column=2,row=0,sticky=W, pady=150,padx=10)
 
         terug = tk.Button(self, text="     Terug     ", command=lambda: self.home())
         terug.grid(column=1, row=0, sticky=W, pady=150, padx=10)
