@@ -58,22 +58,25 @@ class StartPage(tk.Frame):
             if not arduino_ports:
                 print("No Arduino found")
 
-            if len(arduino_ports) == 1:
+            # a1 en a2 zijn zogenaamd aangesloten.
+            if 1 == 1:  # find_arduino(serial nummer) moet hier komen met het serie nummer
                 a1.config(state=NORMAL)
-            elif len(arduino_ports) == 2:
                 a2.config(state=NORMAL)
-            elif len(arduino_ports) == 3:
+            if len(arduino_ports) == 3:
                 a3.config(state=NORMAL)
             elif len(arduino_ports) == 4:
                 a4.config(state=NORMAL)
             elif len(arduino_ports) == 5:
                 a5.config(state=NORMAL)
 
-        aangesloten()
+        def find_arduino(serial_number):
+            for pinfo in serial.tools.list_ports.comports():
+                if pinfo.serial_number == serial_number:
+                    return True
+                else:
+                    return False
 
-        # a1 en a2 zijn zogenaamd aangesloten.
-        a1.config(state=NORMAL)
-        a2.config(state=NORMAL)
+        aangesloten()
 
     def add_ui(self):
         uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(), width=8)
