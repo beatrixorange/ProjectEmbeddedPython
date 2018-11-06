@@ -4,6 +4,8 @@ import tkinter as tk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from pandas import DataFrame
 import matplotlib.pyplot as plt
+import serial
+import serial.tools.list_ports
 
 """
 In deze file staan meerdere klassen. Elke klasse is een pagina opzich.
@@ -11,6 +13,7 @@ Er is een StartPage daar kun je terecht voor de navigatie tussen de pagina's
 Verder zijn er 5 Arduino pagina's voor de 5 mogelijke besturingseenheden.
 Als laatste is er nog een instelling pagina. Hier kunnen de instellingen voor de eenheden geregeld worden.
 """
+
 
 class StartPage(tk.Frame):
     def __init__(self, parent, controller):
@@ -44,22 +47,33 @@ class StartPage(tk.Frame):
         instellen.pack(side="top", pady=5)
 
         """ Alleen besturingseenheden weergeven die aangesloten zijn.
-            Wanneer een van de besturingseenheden wordt aangesloten moet de knop klikbaar worden.
-            a1 en a2 zijn zogenaamd aangesloten. """
+            Wanneer een van de besturingseenheden wordt aangesloten moet de knop klikbaar worden."""
 
         def aangesloten():
-            if 1 == True:
+            arduino_ports = [
+                p.device
+                for p in serial.tools.list_ports.comports()
+                if 'Arduino' in p.description
+            ]
+            if not arduino_ports:
+                print("No Arduino found")
+
+            if len(arduino_ports) == 1:
                 a1.config(state=NORMAL)
-            if 1 == True:
+            elif len(arduino_ports) == 2:
                 a2.config(state=NORMAL)
-            if 0 == True:
+            elif len(arduino_ports) == 3:
                 a3.config(state=NORMAL)
-            if 0 == True:
+            elif len(arduino_ports) == 4:
                 a4.config(state=NORMAL)
-            if 0 == True:
-                a4.config(state=NORMAL)
+            elif len(arduino_ports) == 5:
+                a5.config(state=NORMAL)
 
         aangesloten()
+
+        # a1 en a2 zijn zogenaamd aangesloten.
+        a1.config(state=NORMAL)
+        a2.config(state=NORMAL)
 
     def add_ui(self):
         uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(), width=8)
@@ -86,7 +100,7 @@ class StartPage(tk.Frame):
     def stoppen():
         print("De rolluiken stoppen")
 
-    #Deze functie zorgt ervoor dat je naar de StartPage gaat.
+    # Deze functie zorgt ervoor dat je naar de StartPage gaat.
     def home(self):
         self.controller.show_frame("StartPage")
 
