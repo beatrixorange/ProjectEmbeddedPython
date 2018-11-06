@@ -1,10 +1,6 @@
 import tkinter as tk
 import Pages
-"""
-De klasse Controller regelt de navigatie in de UI.
-Hier staan alle frames in en de referenties naar die frames. 
-Als eerste wordt de pagina "StartPage" getoond.
-"""
+
 class Controller(tk.Tk):
 
     def __init__(self, *args, **kwargs):
