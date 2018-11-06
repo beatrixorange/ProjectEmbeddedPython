@@ -86,13 +86,16 @@ class StartPage(tk.Frame):
         terug = tk.Button(self, text="     Terug     ", command=lambda: self.home())
         terug.grid(column=1, row=0, sticky=N, pady=240)
 
-    def rolluik_uitrollen(self):
+    @staticmethod
+    def rolluik_uitrollen():
         print("Aan het uitrollen")
 
-    def rolluik_inhalen(self):
+    @staticmethod
+    def rolluik_inhalen():
         print("Aan het inhalen")
 
-    def stoppen(self):
+    @staticmethod
+    def stoppen():
         print("De rolluiken stoppen")
 
     def home(self):
@@ -216,14 +219,18 @@ class Instellingen(StartPage):
         self.uitrol_label = tk.Label(self, text=" Maximale uitrolstand:")
         self.uitrol_label.pack()
         self.uitrol_choiceVar = tk.StringVar()
-        self.uitrol = ttk.Entry(self, textvariable=self.uitrol_choiceVar)
-        self.uitrol.pack(pady=10)
+        self.uitrol_choices = ("Keuze 1", "Keuze 2", "Keuze 3", "Keuze 4")
+        self.uitrol_choiceVar.set(self.uitrol_choices[0])
+        self.uitrol_cb = ttk.Combobox(self, textvariable=self.uitrol_choiceVar, values=self.uitrol_choices)
+        self.uitrol_cb.pack(pady=10)
 
         self.inrol_label = tk.Label(self, text="Maximale inrolstand:")
         self.inrol_label.pack()
         self.inrol_choiceVar = tk.StringVar()
-        self.inrol = ttk.Entry(self, textvariable=self.inrol_choiceVar)
-        self.inrol.pack(pady=10)
+        self.inrol_choices = ("Keuze 1", "Keuze 2", "Keuze 3", "Keuze 4")
+        self.inrol_choiceVar.set(self.inrol_choices[0])
+        self.inrol_cb = ttk.Combobox(self, textvariable=self.inrol_choiceVar, values=self.inrol_choices)
+        self.inrol_cb.pack(pady=10)
 
         toepassen = tk.Button(self, text="Toepassen", command=lambda: self.toepassen())
         toepassen.pack(fill="y", pady=10)
