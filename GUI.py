@@ -140,6 +140,20 @@ class Arduino1(StartPage):
         df.plot(kind='line', legend=True, ax=ax, color='b', fontsize=10)
         self.graph1.get_tk_widget().grid(column=0, row=0)
 
+        self.uitrol_label = tk.Label(self, text=" Uitrolgrens:")
+        self.uitrol_label.grid(column=1, row=0, sticky=N, pady=50)
+        self.uitrol_choiceVar = tk.StringVar()
+        self.uitrol_choices = ("20°C", "25°C", "30°C", "35°C", "40°C")
+        self.uitrol_choiceVar.set(self.uitrol_choices[2])
+        self.uitrol_cb = ttk.Combobox(self, textvariable=self.uitrol_choiceVar, values=self.uitrol_choices, width=7)
+        self.uitrol_cb.grid(column=1, row=0, sticky=N, pady=70)
+
+        uitrolgrens_t = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_t())
+        uitrolgrens_t.grid(column=1, row=0, sticky=N, pady=100)
+
+    def uitrolgrens_t(self):
+        print("Het zonnescherm wordt automatisch opgerold wanneer het warmer dan", self.uitrol_choiceVar.get(), "is.")
+
 
 class Arduino2(StartPage):
 
@@ -161,6 +175,20 @@ class Arduino2(StartPage):
         self.graph2 = FigureCanvasTkAgg(figure2, self)
         df2.plot(kind='line', legend=True, ax=ax2, color='b', fontsize=10)
         self.graph2.get_tk_widget().grid(column=0, row=0)
+
+        self.uitrol_label = tk.Label(self, text=" Uitrolgrens:")
+        self.uitrol_label.grid(column=1, row=0, sticky=N, pady=50)
+        self.uitrol_choiceVar = tk.StringVar()
+        self.uitrol_choices = ("50 klx", "60 klx", "70 klx", "80 klx", "90 klx", "100 klx", "110 klx", "120 klx", "130 klx")
+        self.uitrol_choiceVar.set(self.uitrol_choices[5])
+        self.uitrol_cb = ttk.Combobox(self, textvariable=self.uitrol_choiceVar, values=self.uitrol_choices, width=7)
+        self.uitrol_cb.grid(column=1, row=0, sticky=N, pady=70)
+
+        uitrolgrens_l = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_l())
+        uitrolgrens_l.grid(column=1, row=0, sticky=N, pady=100)
+
+    def uitrolgrens_l(self):
+        print("Het zonnescherm wordt automatisch opgerold wanneer de lichtintesiteit", self.uitrol_choiceVar.get(), "overschrijdt.")
 
 
 class Arduino3(StartPage):
