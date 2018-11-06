@@ -1,5 +1,7 @@
 import tkinter as tk
 import Pages
+import Instellingen
+
 
 class Controller(tk.Tk):
 
@@ -20,7 +22,7 @@ class Controller(tk.Tk):
         self.frames["Arduino3"] = Pages.Arduino3(parent=container, controller=self)
         self.frames["Arduino4"] = Pages.Arduino4(parent=container, controller=self)
         self.frames["Arduino5"] = Pages.Arduino5(parent=container, controller=self)
-        self.frames["Instellingen"] = Pages.Instellingen(parent=container, controller=self)
+        self.frames["Instellingen"] = Instellingen.Instellingen(parent=container, controller=self)
 
         self.frames["StartPage"].grid(row=0, column=0, sticky="nsew")
         self.frames["Arduino1"].grid(row=0, column=0, sticky="nsew")
