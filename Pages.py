@@ -5,6 +5,12 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from pandas import DataFrame
 import matplotlib.pyplot as plt
 
+"""
+In deze file staan meerdere klassen. Elke klasse is een pagina opzich.
+Er is een StartPage daar kun je terecht voor de navigatie tussen de pagina's
+Verder zijn er 5 Arduino pagina's voor de 5 mogelijke besturingseenheden.
+Als laatste is er nog een instelling pagina. Hier kunnen de instellingen voor de eenheden geregeld worden.
+"""
 
 class StartPage(tk.Frame):
     def __init__(self, parent, controller):
@@ -57,24 +63,31 @@ class StartPage(tk.Frame):
     def stoppen():
         print("De rolluiken stoppen")
 
+    #Deze functie zorgt ervoor dat je naar de StartPage gaat.
     def home(self):
         self.controller.show_frame("StartPage")
 
+    # Deze functie zorgt ervoor dat je naar de eerste Arduino pagina gaat.
     def arduino1(self):
         self.controller.show_frame("Arduino1")
 
+    # Deze functie zorgt ervoor dat je naar de tweede Arduino pagina gaat.
     def arduino2(self):
         self.controller.show_frame("Arduino2")
 
+    # Deze functie zorgt ervoor dat je naar de derde Arduino pagina gaat.
     def arduino3(self):
         self.controller.show_frame("Arduino3")
 
+    # Deze functie zorgt ervoor dat je naar de vierde Arduino pagina gaat.
     def arduino4(self):
         self.controller.show_frame("Arduino4")
 
+    # Deze functie zorgt ervoor dat je naar de vijfde Arduino pagina gaat.
     def arduino5(self):
         self.controller.show_frame("Arduino5")
 
+    # Deze functie zorgt ervoor dat je naar de instellingen pagina gaat.
     def instellingen(self):
         self.controller.show_frame("Instellingen")
 
