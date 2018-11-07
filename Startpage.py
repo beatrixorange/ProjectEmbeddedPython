@@ -11,6 +11,8 @@ Serie nummer van de arduino toevoegen aan de 'aangesloten' functie om te kunnen 
 Uitrollen, inhalen, stoppen functies werkend maken.
 """
 
+uitrolstand = 0
+inrolstand = 0
 
 class StartPage(tk.Frame):
     def __init__(self, parent, controller):
@@ -88,16 +90,15 @@ class StartPage(tk.Frame):
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
         terug.grid(column=1, row=0, sticky=N, pady=240)
 
-    @staticmethod
-    def rolluik_uitrollen():
+    def rolluik_uitrollen(self):
         print("Aan het uitrollen")
+        print("De stand van het rolluik is nu", uitrolstand)
 
-    @staticmethod
-    def rolluik_inhalen():
+    def rolluik_inhalen(self):
         print("Aan het inhalen")
+        print("De stand van het rolluik is nu", inrolstand)
 
-    @staticmethod
-    def stoppen():
+    def stoppen(self):
         print("De rolluiken stoppen")
 
     # Deze functie zorgt ervoor dat je naar de StartPage gaat.

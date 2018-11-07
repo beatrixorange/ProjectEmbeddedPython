@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from Startpage import StartPage
+import Startpage
 
 """
 Hier kunnen de instellingen geregeld worden van de uitrol/inrolstand. 
@@ -10,7 +11,6 @@ Hoe groot is het zonnescherm? (dus tot hoe ver kan het maximaal uitgerold worden
 De standen moeten worden doorgegeven worden om op het display te kunnen laten zien hoe ver het rolluik is uitgerold
 na inrollen/uirollen.
 """
-
 
 class Instellingen(StartPage):
     def __init__(self, parent, controller):
@@ -46,22 +46,20 @@ class Instellingen(StartPage):
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=10)
         terug.pack(fill="y", pady=10)
 
-        self.uitrolstand = 0
-        self.inrolstand = 0
 
     def toepassen(self):
         if self.uitrol_choiceVar.get() == self.uitrol_choices[0]:
-            self.uitrolstand = 0
-            print("De maximale uitrolstand is nu", self.uitrolstand, "cm.")
+            Startpage.uitrolstand = 0
+            print("De maximale uitrolstand is nu -", Startpage.uitrolstand, "cm.")
         else:
-            self.uitrolstand = self.uitrol_choiceVar.get().split(' ')
-            self.uitrolstand = int(self.uitrolstand[0])
-            print("De maximale uitrolstand is nu:", self.uitrolstand, "cm.")
+            s = self.uitrol_choiceVar.get().split(' ')
+            Startpage.uitrolstand = int(s[0])
+            print("De maximale uitrolstand is nu:", Startpage.uitrolstand, "cm.")
 
         if self.inrol_choiceVar.get() == self.inrol_choices[0]:
-            self.inrolstand = 0
-            print("De maximale inrolstand is nu", self.inrolstand, "cm.")
+            Startpage.inrolstand = 0
+            print("De maximale inrolstand is nu", Startpage.inrolstand, "cm.")
         else:
-            self.inrolstand = self.inrol_choiceVar.get().split(' ')
-            self.inrolstand = int(self.inrolstand[0])
-            print("De maximale inrolstand is nu:", self.inrolstand, "cm.")
+            s = self.inrol_choiceVar.get().split(' ')
+            Startpage.inrolstand = int(s[0])
+            print("De maximale inrolstand is nu:", Startpage.inrolstand, "cm.")

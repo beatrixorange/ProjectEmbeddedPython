@@ -44,7 +44,7 @@ class Arduino1(StartPage):
         self.uitrol_label.grid(column=1, row=0, sticky=N, pady=50)
         self.uitrol_choiceVar = tk.StringVar()
         self.uitrol_choices = ("uit", "20°C", "25°C", "30°C", "35°C", "40°C")
-        self.uitrol_choiceVar.set(self.uitrol_choices[3])  # standaard op 30°C
+        self.uitrol_choiceVar.set(self.uitrol_choices[3])  # standard 30°C
         self.uitrol_cb = ttk.Combobox(self, textvariable=self.uitrol_choiceVar, values=self.uitrol_choices, width=7)
         self.uitrol_cb.grid(column=1, row=0, sticky=N, pady=70)
 
