@@ -91,21 +91,24 @@ class StartPage(tk.Frame):
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
         terug.grid(column=1, row=0, sticky=N, pady=240)
 
-    def rolluik_uitrollen(self):
+    @staticmethod
+    def rolluik_uitrollen():
         print("Aan het uitrollen...")
         if uitrolstand == 0:
             print("Het rolluik is helemaal uitgerold.")
         else:
             print("Het rolluik is uitgerold", uitrolstand, "cm.")
 
-    def rolluik_inhalen(self):
+    @staticmethod
+    def rolluik_inhalen():
         print("Aan het inhalen...")
         if inrolstand == 0:
             print("Het rolluik is helemaal ingerold.")
         else:
             print("De stand van het rolluik is", inrolstand, "cm.")
 
-    def stoppen(self):
+    @staticmethod
+    def stoppen():
         print("De rolluiken stoppen")
 
     # Deze functie zorgt ervoor dat je naar de StartPage gaat.
