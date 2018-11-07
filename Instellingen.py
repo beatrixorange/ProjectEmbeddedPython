@@ -8,7 +8,7 @@ Hier kunnen de instellingen geregeld worden van de uitrol/inrolstand.
 ToDo:
 Hoe groot is het zonnescherm? (dus tot hoe ver kan het maximaal uitgerold worden?)
 Een aantal standen bedenken voor tot hoe ver je het scherm wil inrollen (standaard 0cm)  en uitrollen (standaard max)
-Dit moet doorgegeven worden op op het display te kunnen laten zien hoe ver het rolluik is uitgerold.
+Dit moet doorgegeven worden om op het display te kunnen laten zien hoe ver het rolluik is uitgerold.
 """
 
 
@@ -32,7 +32,7 @@ class Instellingen(StartPage):
         self.inrol_label.pack()
         self.inrol_choiceVar = tk.StringVar()
         self.inrol_choices = ("Stand 1", "Stand 2", "Stand 3", "Stand 4")
-        self.inrol_choiceVar.set(self.inrol_choices[0])
+        self.inrol_choiceVar.set(self.inrol_choices[3])
         self.inrol_cb = ttk.Combobox(self, textvariable=self.inrol_choiceVar, values=self.inrol_choices, width=15)
         self.inrol_cb.pack(pady=10)
 

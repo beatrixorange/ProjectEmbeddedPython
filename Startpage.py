@@ -8,6 +8,7 @@ Dit is de StartPage daar kun je terecht voor de navigatie tussen de pagina's
 
 ToDo:
 Serie nummer van de arduino toevoegen aan de 'aangesloten' functie om te kunnen detecteren of deze is aangesloten.
+Uitrollen, inhalen, stoppen functies werkend maken.
 """
 
 
