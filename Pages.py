@@ -19,7 +19,6 @@ Er moet doorgegeven worden dat de roluiken ingerold moeten worden wanneer de tem
 onder de grens bevindt.
 """
 
-
 class Arduino1(StartPage):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)

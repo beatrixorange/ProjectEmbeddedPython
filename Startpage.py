@@ -14,6 +14,7 @@ Uitrollen, inhalen, stoppen functies werkend maken.
 uitrolstand = 0
 inrolstand = 0
 
+
 class StartPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -91,12 +92,18 @@ class StartPage(tk.Frame):
         terug.grid(column=1, row=0, sticky=N, pady=240)
 
     def rolluik_uitrollen(self):
-        print("Aan het uitrollen")
-        print("De stand van het rolluik is nu", uitrolstand)
+        print("Aan het uitrollen...")
+        if uitrolstand == 0:
+            print("Het rolluik is helemaal uitgerold.")
+        else:
+            print("Het rolluik is uitgerold", uitrolstand, "cm.")
 
     def rolluik_inhalen(self):
-        print("Aan het inhalen")
-        print("De stand van het rolluik is nu", inrolstand)
+        print("Aan het inhalen...")
+        if inrolstand == 0:
+            print("Het rolluik is helemaal ingerold.")
+        else:
+            print("De stand van het rolluik is", inrolstand, "cm.")
 
     def stoppen(self):
         print("De rolluiken stoppen")
