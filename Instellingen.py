@@ -3,7 +3,12 @@ from tkinter import ttk
 from Startpage import StartPage
 
 """
-Hier kunnen de instellingen geregeld worden.
+Hier kunnen de instellingen geregeld worden van de uitrol/inrolstand. 
+
+ToDo:
+Hoe groot is het zonnescherm? (dus tot hoe ver kan het maximaal uitgerold worden?)
+Een aantal standen bedenken voor tot hoe ver je het scherm wil inrollen (standaard 0cm)  en uitrollen (standaard max)
+Dit moet doorgegeven worden op op het display te kunnen laten zien hoe ver het rolluik is uitgerold.
 """
 
 

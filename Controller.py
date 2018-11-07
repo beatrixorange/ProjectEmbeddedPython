@@ -1,6 +1,7 @@
 import tkinter as tk
 import Pages
 import Instellingen
+import Startpage
 
 """
 Dit is de controller
@@ -20,7 +21,7 @@ class Controller(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = dict()
-        self.frames["StartPage"] = Pages.StartPage(parent=container, controller=self)
+        self.frames["StartPage"] = Startpage.StartPage(parent=container, controller=self)
         self.frames["Arduino1"] = Pages.Arduino1(parent=container, controller=self)
         self.frames["Arduino2"] = Pages.Arduino2(parent=container, controller=self)
         self.frames["Arduino3"] = Pages.Arduino3(parent=container, controller=self)

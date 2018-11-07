@@ -7,7 +7,16 @@ import matplotlib.pyplot as plt
 from Startpage import StartPage
 
 """
-In deze file staan meerdere klassen. Elke klasse is een van de 5 Arduino pagina's voor de 5 mogelijke besturingseenheden.
+In deze file staan meerdere klassen. 
+Elke klasse is een van de 5 Arduino pagina's voor de 5 mogelijke besturingseenheden.
+
+ToDo:
+Live grafieken toevoegen die de data van de sensoren laten zien. 
+Grafiek 1: temperatuur per 40 seconden, grafiek 2: lichtintensiteit per 30 seconden.
+Er moet gekeken worden wannneer een grens berijkt wordt.
+Er moet doorgegeven worden dat de roluiken uitgerold moeten worden wanneer deze grens berijkt wordt.
+Er moet doorgegeven worden dat de roluiken ingerold moeten worden wanneer de temperatuur/lichtintensiteit zich weer
+onder de grens bevindt.
 """
 
 
@@ -46,7 +55,8 @@ class Arduino1(StartPage):
         if self.uitrol_choiceVar.get() == self.uitrol_choices[0]:
             print("Automatisch uitrollen is uitgeschakeld.")
         else:
-            print("Het zonnescherm wordt automatisch uitgerold wanneer het warmer dan", self.uitrol_choiceVar.get(), "is.")
+            print("Het zonnescherm wordt automatisch uitgerold wanneer het warmer dan", self.uitrol_choiceVar.get(),
+                  "is.")
 
 
 class Arduino2(StartPage):
@@ -73,7 +83,8 @@ class Arduino2(StartPage):
         self.uitrol_label = tk.Label(self, text=" Uitrolgrens:")
         self.uitrol_label.grid(column=1, row=0, sticky=N, pady=50)
         self.uitrol_choiceVar = tk.StringVar()
-        self.uitrol_choices = ("uit", "50 klx", "60 klx", "70 klx", "80 klx", "90 klx", "100 klx", "110 klx", "120 klx", "130 klx")
+        self.uitrol_choices = ("uit", "50 klx", "60 klx", "70 klx", "80 klx", "90 klx", "100 klx", "110 klx", "120 klx",
+                               "130 klx")
         self.uitrol_choiceVar.set(self.uitrol_choices[6])  # standaard op 100 klx
         self.uitrol_cb = ttk.Combobox(self, textvariable=self.uitrol_choiceVar, values=self.uitrol_choices, width=7)
         self.uitrol_cb.grid(column=1, row=0, sticky=N, pady=70)
@@ -85,7 +96,8 @@ class Arduino2(StartPage):
         if self.uitrol_choiceVar.get() == self.uitrol_choices[0]:
             print("Automatisch uitrollen is uitgeschakeld.")
         else:
-            print("Het zonnescherm wordt automatisch uigerold wanneer de lichtintesiteit", self.uitrol_choiceVar.get(), "overschrijdt.")
+            print("Het zonnescherm wordt automatisch uigerold wanneer de lichtintesiteit", self.uitrol_choiceVar.get(),
+                  "overschrijdt.")
 
 
 class Arduino3(StartPage):
