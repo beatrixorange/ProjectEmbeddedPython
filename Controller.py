@@ -2,6 +2,11 @@ import tkinter as tk
 import Pages
 import Instellingen
 
+"""
+Dit is de controller
+"""
+
+
 class Controller(tk.Tk):
 
     def __init__(self, *args, **kwargs):

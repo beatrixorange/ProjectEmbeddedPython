@@ -1,6 +1,11 @@
 import tkinter as tk
 from tkinter import ttk
-from Pages import StartPage
+from Startpage import StartPage
+
+"""
+Hier kunnen de instellingen geregeld worden.
+"""
+
 
 class Instellingen(StartPage):
     def __init__(self, parent, controller):
