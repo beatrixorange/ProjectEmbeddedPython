@@ -86,37 +86,45 @@ class StartPage(tk.Frame):
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
         terug.grid(column=1, row=0, sticky=N, pady=240)
 
+        self.uitgerold = False
+
     def inlezen(self):
-        # TODO Uitvinden wat we met het ID doen.
+
         for c in itertools.cycle(Connection.connections):
             x = c.read()
             if '#' in x:
-                l1 = x.split(".")
-                afstand = int(l1[1].replace("#",""))
+                l1 = x.split("*")
+                afstand = int(l1[1])
             if '$' in x:
-                l2 = x.split(".")
-                licht = int(l2[1].replace("&",""))
+                l2 = x.split("*")
+                licht = int(l2[1])
             if '%' in x:
-                l3 = x.split(".")
-                temp = int(l3[1].replace("%",""))
+                l3 = x.split("*")
+                temp = int(l3[1])
 
     def rolluik_uitrollen(self):
-        print("Aan het uitrollen...")
-        if uitrolstand == 0:
-            print("Het rolluik is helemaal uitgerold.")
+        if self.uitgerold == False:
+            print("Aan het uitrollen...")
+            if uitrolstand == 0:
+                print("Het rolluik is helemaal uitgerold.")
+                self.uitgerold = True
+            else:
+                print("Het rolluik is uitgerold", uitrolstand, "cm.")
+                self.uitgerold = True
         else:
-            print("Het rolluik is uitgerold", uitrolstand, "cm.")
-
-    def stuur_id(self):
-        #TODO Fucntie schrijven.
-        pass
+            print("Het rolluik was al uitgerold.")
 
     def rolluik_inhalen(self):
-        print("Aan het inhalen...")
-        if inrolstand == 0:
-            print("Het rolluik is helemaal ingerold.")
+        if self.uitgerold == True:
+            print("Aan het inhalen...")
+            if inrolstand == 0:
+                print("Het rolluik is helemaal ingerold.")
+                self.uitgerold = False
+            else:
+                print("De stand van het rolluik is", inrolstand, "cm.")
+                self.uitgerold = False
         else:
-            print("De stand van het rolluik is", inrolstand, "cm.")
+            print("Het rolluik was al ingerold")
 
     def stoppen(self):
         print("De rolluiken stoppen")

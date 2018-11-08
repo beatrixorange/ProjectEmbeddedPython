@@ -63,8 +63,11 @@ class Arduino1(StartPage):
                   "is.")
 
     def check_grens(self):  # temperatuur moet ergens opgehaald worden
-        if self.temp_grens is not None and 'Temperatuur' > self.uitrol_choiceVar.get():
+        if self.temp_grens != 0 and 'Temperatuur' > self.uitrol_choiceVar.get():
             StartPage.rolluik_uitrollen()
+            self.t_grens = True
+        else:
+            self.t_grens = False
 
 
 class Arduino2(StartPage):
@@ -113,6 +116,9 @@ class Arduino2(StartPage):
     def check_grens(self):  # Lichtintensiteit moet ergens opgehaald worden
         if self.licht_grens is not None and 'Lichtintensiteit' > self.licht_grens:
             StartPage.rolluik_uitrollen()
+            self.l_grens = True
+        else:
+            self.l_grens = False
 
 
 class Arduino3(StartPage):
