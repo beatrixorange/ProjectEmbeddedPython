@@ -87,18 +87,18 @@ class StartPage(tk.Frame):
         terug.grid(column=1, row=0, sticky=N, pady=240)
 
     def inlezen(self):
-
+        # TODO Uitvinden wat we met het ID doen.
         for c in itertools.cycle(Connection.connections):
             x = c.read()
             if '#' in x:
-                l1 = x.split("*")
-                afstand = int(l1[1])
+                l1 = x.split(".")
+                afstand = int(l1[1].replace("#",""))
             if '$' in x:
-                l2 = x.split("*")
-                licht = int(l2[1])
+                l2 = x.split(".")
+                licht = int(l2[1].replace("&",""))
             if '%' in x:
-                l3 = x.split("*")
-                temp = int(l3[1])
+                l3 = x.split(".")
+                temp = int(l3[1].replace("%",""))
 
     def rolluik_uitrollen(self):
         print("Aan het uitrollen...")
@@ -106,6 +106,10 @@ class StartPage(tk.Frame):
             print("Het rolluik is helemaal uitgerold.")
         else:
             print("Het rolluik is uitgerold", uitrolstand, "cm.")
+
+    def stuur_id(self):
+        #TODO Fucntie schrijven.
+        pass
 
     def rolluik_inhalen(self):
         print("Aan het inhalen...")
