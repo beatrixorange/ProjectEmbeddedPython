@@ -20,6 +20,7 @@ Er moet doorgegeven worden dat de roluiken ingerold moeten worden wanneer de tem
 onder de grens bevindt.
 """
 
+
 class Arduino1(StartPage):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -53,10 +54,17 @@ class Arduino1(StartPage):
 
     def uitrolgrens_t(self):
         if self.uitrol_choiceVar.get() == self.uitrol_choices[0]:
+            self.temp_grens = None
             print("Automatisch uitrollen is uitgeschakeld.")
         else:
+            s = self.uitrol_choiceVar.get().split('°')
+            self.temp_grens = int(s[0])
             print("Het zonnescherm wordt automatisch uitgerold wanneer het warmer dan", self.uitrol_choiceVar.get(),
                   "is.")
+
+    def check_grens(self):  # temperatuur moet ergens opgehaald worden
+        if self.temp_grens is not None and 'Temperatuur' > self.uitrol_choiceVar.get():
+            StartPage.rolluik_uitrollen()
 
 
 class Arduino2(StartPage):
@@ -94,10 +102,17 @@ class Arduino2(StartPage):
 
     def uitrolgrens_l(self):
         if self.uitrol_choiceVar.get() == self.uitrol_choices[0]:
+            self.licht_grens = None
             print("Automatisch uitrollen is uitgeschakeld.")
         else:
+            s = self.uitrol_choiceVar.get().split(' ')
+            self.licht_grens = int(s[0])
             print("Het zonnescherm wordt automatisch uigerold wanneer de lichtintesiteit", self.uitrol_choiceVar.get(),
                   "overschrijdt.")
+
+    def check_grens(self):  # Lichtintensiteit moet ergens opgehaald worden
+        if self.licht_grens is not None and 'Lichtintensiteit' > self.licht_grens:
+            StartPage.rolluik_uitrollen()
 
 
 class Arduino3(StartPage):
