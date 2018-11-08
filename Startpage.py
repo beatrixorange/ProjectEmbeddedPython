@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter as tk
 import Connection
-
+import itertools
 
 """
 Dit is de StartPage daar kun je terecht voor de navigatie tussen de pagina's
@@ -87,8 +87,9 @@ class StartPage(tk.Frame):
         terug.grid(column=1, row=0, sticky=N, pady=240)
 
     def inlezen(self):
-        while 1:
-            x = Connection.ser.read()
+
+        for c in itertools.cycle(Connection.connections):
+            x = c.read()
             if '#' in x:
                 l1 = x.split("*")
                 afstand = int(l1[1])
