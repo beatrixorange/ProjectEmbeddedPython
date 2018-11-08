@@ -6,6 +6,7 @@ from pandas import DataFrame
 import matplotlib.pyplot as plt
 from Startpage import StartPage
 
+
 """
 In deze file staan meerdere klassen. 
 Elke klasse is een van de 5 Arduino pagina's voor de 5 mogelijke besturingseenheden.
@@ -30,7 +31,7 @@ class Arduino1(StartPage):
 
         #  Voorbeeld grafiek temperatuur
         data = {'Tijd': [14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-                'Temperatuur': [11, 10, 9, 8, 7, 5, 4, 4, 4, 4]}
+                'Temperatuur': [25,26,27,28,24,26,27,25,24,26]}
         df = DataFrame(data, columns=['Tijd', 'Temperatuur'])
         df = df[['Tijd', 'Temperatuur']].groupby('Tijd').sum()
         figure = plt.Figure(figsize=(7, 5), dpi=100)
@@ -70,7 +71,7 @@ class Arduino2(StartPage):
 
         #  Voorbeeld grafiek lichtintensiteit
         data2 = {'Tijd': [14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-                 'Lichtintensiteit': [10, 8, 6, 3, 2.5, 2, 1.5, 1, 1, 1]}
+                 'Lichtintensiteit': [25,26,27,28,24,26,27,25,24,26]}
         df2 = DataFrame(data2, columns=['Tijd', 'Lichtintensiteit'])
         df2 = df2[['Tijd', 'Lichtintensiteit']].groupby('Tijd').sum()
         figure2 = plt.Figure(figsize=(7, 5), dpi=100)

@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter as tk
-import serial
-import serial.tools.list_ports
+import Connection
+
 
 """
 Dit is de StartPage daar kun je terecht voor de navigatie tussen de pagina's
@@ -50,27 +50,22 @@ class StartPage(tk.Frame):
             Wanneer een van de besturingseenheden wordt aangesloten moet de knop klikbaar worden."""
 
         def aangesloten():
-            arduino_ports = [
-                p.device
-                for p in serial.tools.list_ports.comports()
-                if 'Arduino' in p.description
-            ]
-            if not arduino_ports:
+            if not Connection.result:
                 print("No Arduino found")
 
             # a1 en a2 zijn zogenaamd aangesloten.
             if 1 == 1:  # find_arduino(serial nummer) moet hier komen met het juiste serie nummer
                 a1.config(state=NORMAL)
                 a2.config(state=NORMAL)
-            if len(arduino_ports) == 3:
+            if len(Connection.result) == 3:
                 a3.config(state=NORMAL)
-            elif len(arduino_ports) == 4:
+            elif len(Connection.result) == 4:
                 a4.config(state=NORMAL)
-            elif len(arduino_ports) == 5:
+            elif len(Connection.result) == 5:
                 a5.config(state=NORMAL)
 
         def find_arduino(serial_number):
-            for pinfo in serial.tools.list_ports.comports():
+            for pinfo in Connection.serial.tools.list_ports.comports():
                 if pinfo.serial_number == serial_number:
                     return True
                 else:
@@ -90,6 +85,19 @@ class StartPage(tk.Frame):
 
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
         terug.grid(column=1, row=0, sticky=N, pady=240)
+
+    def inlezen(self):
+        while 1:
+            x = Connection.ser.read()
+            if '#' in x:
+                l1 = x.split("*")
+                afstand = int(l1[1])
+            if '$' in x:
+                l2 = x.split("*")
+                licht = int(l2[1])
+            if '%' in x:
+                l3 = x.split("*")
+                temp = int(l3[1])
 
     def rolluik_uitrollen(self):
         print("Aan het uitrollen...")
