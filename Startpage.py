@@ -1,7 +1,6 @@
 from tkinter import *
 import tkinter as tk
 import Connection
-import itertools
 
 """
 Dit is de StartPage daar kun je terecht voor de navigatie tussen de pagina's
@@ -13,6 +12,7 @@ Uitrollen, inhalen, stoppen functies werkend maken.
 
 uitrolstand = 0
 inrolstand = 0
+id_list = []
 
 
 class StartPage(tk.Frame):
@@ -29,7 +29,7 @@ class StartPage(tk.Frame):
 
         a2 = tk.Button(self, text="Lichtintensiteit", command=lambda: self.arduino2(), width=20)
         a2.pack(side="top", pady=5)
-        a1.config(state=DISABLED)
+        a2.config(state=DISABLED)
 
         a3 = tk.Button(self, text="Sensor 3", command=lambda: self.arduino3(), width=20)
         a3.pack(side="top", pady=5)
@@ -50,18 +50,17 @@ class StartPage(tk.Frame):
             Wanneer een van de besturingseenheden wordt aangesloten moet de knop klikbaar worden."""
 
         def aangesloten():
-            if not Connection.result:
-                print("No Arduino found")
-
             # a1 en a2 zijn zogenaamd aangesloten.
-            if 1 == 1:  # find_arduino(serial nummer) moet hier komen met het juiste serie nummer
+            if len(Connection.connections) >= 1:  # find_arduino(serial nummer) moet hier komen met het juiste serie nummer
                 a1.config(state=NORMAL)
+                print(len(Connection.connections))
+            if len(Connection.connections) >= 2:
                 a2.config(state=NORMAL)
-            if len(Connection.result) == 3:
+            if len(Connection.connections) == 3:
                 a3.config(state=NORMAL)
-            elif len(Connection.result) == 4:
+            if len(Connection.connections) == 4:
                 a4.config(state=NORMAL)
-            elif len(Connection.result) == 5:
+            if len(Connection.connections) == 5:
                 a5.config(state=NORMAL)
 
         def find_arduino(serial_number):
@@ -70,7 +69,6 @@ class StartPage(tk.Frame):
                     return True
                 else:
                     return False
-
         aangesloten()
 
     def add_ui(self):
@@ -86,40 +84,58 @@ class StartPage(tk.Frame):
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
         terug.grid(column=1, row=0, sticky=N, pady=240)
 
-    def inlezen(self):
-        # TODO Uitvinden wat we met het ID doen.
-        for c in itertools.cycle(Connection.connections):
-            x = c.read()
-            if '#' in x:
-                l1 = x.split(".")
-                afstand = int(l1[1].replace("#",""))
-            if '$' in x:
-                l2 = x.split(".")
-                licht = int(l2[1].replace("&",""))
-            if '%' in x:
-                l3 = x.split(".")
-                temp = int(l3[1].replace("%",""))
+    def rolluik_uitrollen(self, id):
+        i = 1
+        while i < 6:
+            if id == i:
+                c = Connection.connections[i-1]
+                char1 = ('&').encode()
+                char2 = ('d').encode()
+                char3 = ('&').encode()
+                c.write(char1)
+                c.write(char2)
+                c.write(char3)
+                print(id)
+            i += 1
 
-    def rolluik_uitrollen(self):
-        print("Aan het uitrollen...")
-        if uitrolstand == 0:
-            print("Het rolluik is helemaal uitgerold.")
-        else:
-            print("Het rolluik is uitgerold", uitrolstand, "cm.")
+
 
     def stuur_id(self):
-        #TODO Fucntie schrijven.
-        pass
+        i = 1
+        for c in Connection.connections:
+            c.write("&").encode()
+            c.write(i).encode()
+            c.write("&").encode()
+            id_list.append(i)
+            i + 1
 
-    def rolluik_inhalen(self):
-        print("Aan het inhalen...")
-        if inrolstand == 0:
-            print("Het rolluik is helemaal ingerold.")
-        else:
-            print("De stand van het rolluik is", inrolstand, "cm.")
+    def rolluik_inhalen(self, id):
+        i = 1
+        while i < 6:
+            if id == i:
+                c = Connection.connections[i-1]
+                char1 = ('&').encode()
+                char2 = ('u').encode()
+                char3 = ('&').encode()
+                c.write(char1)
+                c.write(char2)
+                c.write(char3)
+                print(id)
+            i += 1
 
-    def stoppen(self):
-        print("De rolluiken stoppen")
+    def stoppen(self, id):
+        i = 1
+        while i < 6:
+            if id == i:
+                c = Connection.connections[i-1]
+                char1 = ('&').encode()
+                char2 = ('s').encode()
+                char3 = ('&').encode()
+                c.write(char1)
+                c.write(char2)
+                c.write(char3)
+                print(id)
+            i += 1
 
     # Deze functie zorgt ervoor dat je naar de StartPage gaat.
     def home(self):

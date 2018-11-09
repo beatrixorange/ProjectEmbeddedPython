@@ -19,14 +19,12 @@ Er moet doorgegeven worden dat de roluiken uitgerold moeten worden wanneer deze 
 Er moet doorgegeven worden dat de roluiken ingerold moeten worden wanneer de temperatuur/lichtintensiteit zich weer
 onder de grens bevindt.
 """
-
+afstand_list = []
 
 class Arduino1(StartPage):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        self.add_ui()
-
         label = tk.Label(self, text="Temperatuur", font='Helvetica 18 bold', width=12)
         label.grid(column=1, row=0, sticky=N)
 
@@ -52,6 +50,19 @@ class Arduino1(StartPage):
         uitrolgrens_t = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_t(), width=8)
         uitrolgrens_t.grid(column=1, row=0, sticky=N, pady=100)
 
+        uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(1), width=8)
+        uitrollen.grid(column=1, row=0, sticky=N, pady=150)
+
+        inhalen = tk.Button(self, text="Inhalen", command=lambda: self.rolluik_inhalen(1), width=8)
+        inhalen.grid(column=1, row=0, sticky=N, pady=180)
+
+        stoppen = tk.Button(self, text="Stoppen", command=lambda: self.stoppen(1), width=8)
+        stoppen.grid(column=1, row=0, sticky=N, pady=210)
+
+        terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
+        terug.grid(column=1, row=0, sticky=N, pady=240)
+
+
     def uitrolgrens_t(self):
         if self.uitrol_choiceVar.get() == self.uitrol_choices[0]:
             self.temp_grens = None
@@ -72,7 +83,7 @@ class Arduino2(StartPage):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        self.add_ui()
+
 
         label = tk.Label(self, text="Lichtintensiteit", font='Helvetica 18 bold', width=12)
         label.grid(column=1, row=0, sticky=N)
@@ -99,6 +110,21 @@ class Arduino2(StartPage):
 
         uitrolgrens_l = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_l(), width=8)
         uitrolgrens_l.grid(column=1, row=0, sticky=N, pady=100)
+
+        uitrolgrens_t = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_t(), width=8)
+        uitrolgrens_t.grid(column=1, row=0, sticky=N, pady=100)
+
+        uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(2), width=8)
+        uitrollen.grid(column=1, row=0, sticky=N, pady=150)
+
+        inhalen = tk.Button(self, text="Inhalen", command=lambda: self.rolluik_inhalen(), width=8)
+        inhalen.grid(column=1, row=0, sticky=N, pady=180)
+
+        stoppen = tk.Button(self, text="Stoppen", command=lambda: self.stoppen(), width=8)
+        stoppen.grid(column=1, row=0, sticky=N, pady=210)
+
+        terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
+        terug.grid(column=1, row=0, sticky=N, pady=240)
 
     def uitrolgrens_l(self):
         if self.uitrol_choiceVar.get() == self.uitrol_choices[0]:
@@ -129,6 +155,21 @@ class Arduino3(StartPage):
         self.graph = FigureCanvasTkAgg(figure, self)
         self.graph.get_tk_widget().grid(column=0, row=0)
 
+        uitrolgrens_t = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_t(), width=8)
+        uitrolgrens_t.grid(column=1, row=0, sticky=N, pady=100)
+
+        uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(3), width=8)
+        uitrollen.grid(column=1, row=0, sticky=N, pady=150)
+
+        inhalen = tk.Button(self, text="Inhalen", command=lambda: self.rolluik_inhalen(), width=8)
+        inhalen.grid(column=1, row=0, sticky=N, pady=180)
+
+        stoppen = tk.Button(self, text="Stoppen", command=lambda: self.stoppen(), width=8)
+        stoppen.grid(column=1, row=0, sticky=N, pady=210)
+
+        terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
+        terug.grid(column=1, row=0, sticky=N, pady=240)
+
 
 class Arduino4(StartPage):
     def __init__(self, parent, controller):
@@ -144,6 +185,21 @@ class Arduino4(StartPage):
         self.graph = FigureCanvasTkAgg(figure, self)
         self.graph.get_tk_widget().grid(column=0, row=0)
 
+        uitrolgrens_t = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_t(), width=8)
+        uitrolgrens_t.grid(column=1, row=0, sticky=N, pady=100)
+
+        uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(4), width=8)
+        uitrollen.grid(column=1, row=0, sticky=N, pady=150)
+
+        inhalen = tk.Button(self, text="Inhalen", command=lambda: self.rolluik_inhalen(), width=8)
+        inhalen.grid(column=1, row=0, sticky=N, pady=180)
+
+        stoppen = tk.Button(self, text="Stoppen", command=lambda: self.stoppen(), width=8)
+        stoppen.grid(column=1, row=0, sticky=N, pady=210)
+
+        terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
+        terug.grid(column=1, row=0, sticky=N, pady=240)
+
 
 class Arduino5(StartPage):
     def __init__(self, parent, controller):
@@ -158,3 +214,18 @@ class Arduino5(StartPage):
         figure = plt.Figure(figsize=(7, 5), dpi=100)
         self.graph = FigureCanvasTkAgg(figure, self)
         self.graph.get_tk_widget().grid(column=0, row=0)
+
+        uitrolgrens_t = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_t(), width=8)
+        uitrolgrens_t.grid(column=1, row=0, sticky=N, pady=100)
+
+        uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(5), width=8)
+        uitrollen.grid(column=1, row=0, sticky=N, pady=150)
+
+        inhalen = tk.Button(self, text="Inhalen", command=lambda: self.rolluik_inhalen(), width=8)
+        inhalen.grid(column=1, row=0, sticky=N, pady=180)
+
+        stoppen = tk.Button(self, text="Stoppen", command=lambda: self.stoppen(), width=8)
+        stoppen.grid(column=1, row=0, sticky=N, pady=210)
+
+        terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
+        terug.grid(column=1, row=0, sticky=N, pady=240)
