@@ -54,6 +54,9 @@ class Arduino1(StartPage):
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
         terug.grid(column=1, row=0, sticky=N, pady=240)
 
+        self.uitrol_afstand = tk.Label(self, text="Het rolluik is 2 meter uitgerold")
+        self.uitrol_afstand.grid(column=1, row=0, sticky=N, pady=300)
+
 
     def uitrolgrens_t(self):
         if self.uitrol_choiceVar.get() == self.uitrol_choices[0]:
@@ -117,6 +120,9 @@ class Arduino2(StartPage):
 
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
         terug.grid(column=1, row=0, sticky=N, pady=240)
+
+        self.uitrol_afstand = tk.Label(self, text="Het rolluik is 2 meter uitgerold")
+        self.uitrol_afstand.grid(column=1,row=0,sticky=N,pady=100)
 
     def uitrolgrens_l(self):
         if self.uitrol_choiceVar.get() == self.uitrol_choices[0]:

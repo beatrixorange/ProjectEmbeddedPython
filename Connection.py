@@ -13,13 +13,6 @@ temp_list = []
 i = 0
 
 
-def sturen(s, data):
-    tosend = str(data).encode()
-    print('send: ' + str(data))
-    s.write(tosend)
-    print('tosend: ' +  str(tosend))
-
-
 def inlezen(s):
     # TODO Uitvinden wat we met het ID doen.
     while True:
