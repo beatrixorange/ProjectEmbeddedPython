@@ -44,7 +44,6 @@ class Instellingen(StartPage):
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=10)
         terug.pack(fill="y", pady=10)
 
-
     def toepassen(self):
         if self.uitrol_choiceVar.get() == self.uitrol_choices[0]:
             Startpage.uitrolstand = 0

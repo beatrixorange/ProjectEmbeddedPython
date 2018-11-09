@@ -7,6 +7,7 @@ import Startpage
 Dit is de controller
 """
 
+
 class Controller(tk.Tk):
 
     def __init__(self, *args, **kwargs):

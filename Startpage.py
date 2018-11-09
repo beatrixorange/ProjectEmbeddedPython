@@ -29,7 +29,7 @@ class StartPage(tk.Frame):
 
         a2 = tk.Button(self, text="Lichtintensiteit", command=lambda: self.arduino2(), width=20)
         a2.pack(side="top", pady=5)
-        a1.config(state=DISABLED)
+        a2.config(state=DISABLED)
 
         a3 = tk.Button(self, text="Sensor 3", command=lambda: self.arduino3(), width=20)
         a3.pack(side="top", pady=5)
@@ -74,11 +74,12 @@ class StartPage(tk.Frame):
         aangesloten()
 
     def add_ui(self):
-        uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(), width=8)
-        uitrollen.grid(column=1, row=0, sticky=N, pady=150)
+        self.uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(), width=8)
+        self.uitrollen.grid(column=1, row=0, sticky=N, pady=150)
 
-        inhalen = tk.Button(self, text="Inhalen", command=lambda: self.rolluik_inhalen(), width=8)
-        inhalen.grid(column=1, row=0, sticky=N, pady=180)
+        self.inhalen = tk.Button(self, text="Inhalen", command=lambda: self.rolluik_inhalen(), width=8)
+        self.inhalen.grid(column=1, row=0, sticky=N, pady=180)
+        self.inhalen.config(state=DISABLED)
 
         stoppen = tk.Button(self, text="Stoppen", command=lambda: self.stoppen(), width=8)
         stoppen.grid(column=1, row=0, sticky=N, pady=210)
@@ -89,42 +90,36 @@ class StartPage(tk.Frame):
         self.uitgerold = False
 
     def inlezen(self):
-
+        # TODO Uitvinden wat we met het ID doen.
         for c in itertools.cycle(Connection.connections):
             x = c.read()
             if '#' in x:
-                l1 = x.split("*")
-                afstand = int(l1[1])
+                l1 = x.split(".")
+                afstand = int(l1[1].replace("#",""))
             if '$' in x:
-                l2 = x.split("*")
-                licht = int(l2[1])
+                l2 = x.split(".")
+                licht = int(l2[1].replace("&",""))
             if '%' in x:
-                l3 = x.split("*")
-                temp = int(l3[1])
+                l3 = x.split(".")
+                temp = int(l3[1].replace("%",""))
 
     def rolluik_uitrollen(self):
-        if self.uitgerold == False:
-            print("Aan het uitrollen...")
-            if uitrolstand == 0:
-                print("Het rolluik is helemaal uitgerold.")
-                self.uitgerold = True
-            else:
-                print("Het rolluik is uitgerold", uitrolstand, "cm.")
-                self.uitgerold = True
+        print("Aan het uitrollen...")
+        self.uitrollen.config(state=DISABLED)
+        self.inhalen.config(state=NORMAL)
+        if uitrolstand == 0:
+            print("Het rolluik is helemaal uitgerold.")
         else:
-            print("Het rolluik was al uitgerold.")
+            print("Het rolluik is uitgerold", uitrolstand, "cm.")
 
     def rolluik_inhalen(self):
-        if self.uitgerold == True:
-            print("Aan het inhalen...")
-            if inrolstand == 0:
-                print("Het rolluik is helemaal ingerold.")
-                self.uitgerold = False
-            else:
-                print("De stand van het rolluik is", inrolstand, "cm.")
-                self.uitgerold = False
+        print("Aan het inhalen...")
+        self.inhalen.config(state=DISABLED)
+        self.uitrollen.config(state=NORMAL)
+        if inrolstand == 0:
+            print("Het rolluik is helemaal ingerold.")
         else:
-            print("Het rolluik was al ingerold")
+            print("De stand van het rolluik is", inrolstand, "cm.")
 
     def stoppen(self):
         print("De rolluiken stoppen")
