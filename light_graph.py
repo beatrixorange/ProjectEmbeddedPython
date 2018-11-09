@@ -1,6 +1,7 @@
 import datetime as dt
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+import random
 
 """
 Lichtintensiteit per 60 seconden
@@ -14,9 +15,9 @@ ys = []
 def animate(i, xs, ys):
 
     # Lees de lichtintensiteit
-    licht = ...
+    licht = random.randint(50, 130)
 
-    xs.append(dt.datetime.now().strftime('%H:%M:%S.%f'))
+    xs.append(dt.datetime.now().strftime('%H:%M:%S'))
     ys.append(licht)
 
     # Niet meer dan 20 waarden tegelijk in beeld
@@ -30,5 +31,5 @@ def animate(i, xs, ys):
     plt.subplots_adjust(bottom=0.30)
     plt.ylabel('Lichtintensiteit')
 
-ani = animation.FuncAnimation(fig, animate, fargs=(xs, ys), interval=40000)  # delay = 60000ms = 60 sec
+ani = animation.FuncAnimation(fig, animate, fargs=(xs, ys), interval=1000)  # delay = 60000ms = 60 sec
 plt.show()

@@ -5,6 +5,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from pandas import DataFrame
 import matplotlib.pyplot as plt
 from Startpage import StartPage
+import temperature_graph
 
 """
 In deze file staan meerdere klassen. 
@@ -26,14 +27,7 @@ class Arduino1(StartPage):
         label.grid(column=1, row=0, sticky=N)
 
         #  Voorbeeld grafiek temperatuur
-        data = {'Tijd': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                'Temperatuur': [25, 26, 27, 28, 24, 26, 27, 25, 24, 26]}
-        df = DataFrame(data, columns=['Tijd', 'Temperatuur'])
-        df = df[['Tijd', 'Temperatuur']].groupby('Tijd').sum()
-        figure = plt.Figure(figsize=(7, 5), dpi=100)
-        ax = figure.add_subplot(111)
-        self.graph1 = FigureCanvasTkAgg(figure, self)
-        df.plot(kind='line', legend=True, ax=ax, color='b', fontsize=10)
+        self.graph1 = FigureCanvasTkAgg(temperature_graph.fig, self)
         self.graph1.get_tk_widget().grid(column=0, row=0)
 
         self.uitrol_label = tk.Label(self, text=" Uitrolgrens:")
@@ -163,9 +157,6 @@ class Arduino3(StartPage):
         self.graph = FigureCanvasTkAgg(figure, self)
         self.graph.get_tk_widget().grid(column=0, row=0)
 
-        uitrolgrens_t = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_t(), width=8)
-        uitrolgrens_t.grid(column=1, row=0, sticky=N, pady=100)
-
         uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(3), width=8)
         uitrollen.grid(column=1, row=0, sticky=N, pady=150)
 
@@ -192,9 +183,6 @@ class Arduino4(StartPage):
         self.graph = FigureCanvasTkAgg(figure, self)
         self.graph.get_tk_widget().grid(column=0, row=0)
 
-        uitrolgrens_t = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_t(), width=8)
-        uitrolgrens_t.grid(column=1, row=0, sticky=N, pady=100)
-
         uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(4), width=8)
         uitrollen.grid(column=1, row=0, sticky=N, pady=150)
 
@@ -220,9 +208,6 @@ class Arduino5(StartPage):
         figure = plt.Figure(figsize=(7, 5), dpi=100)
         self.graph = FigureCanvasTkAgg(figure, self)
         self.graph.get_tk_widget().grid(column=0, row=0)
-
-        uitrolgrens_t = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_t(), width=8)
-        uitrolgrens_t.grid(column=1, row=0, sticky=N, pady=100)
 
         uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(5), width=8)
         uitrollen.grid(column=1, row=0, sticky=N, pady=150)

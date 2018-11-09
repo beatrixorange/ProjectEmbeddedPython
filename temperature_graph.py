@@ -1,12 +1,14 @@
 import datetime as dt
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+import random
+
 
 """
 Temperatuur per 60 seconden
 """
 
-fig = plt.figure()
+fig = plt.figure(figsize=(7, 5), dpi=100)
 ax = fig.add_subplot(1, 1, 1)
 xs = []
 ys = []
@@ -14,9 +16,9 @@ ys = []
 def animate(i, xs, ys):
 
     # Lees de temperatuur
-    temp_c = ...
+    temp_c = random.randint(10, 30)
 
-    xs.append(dt.datetime.now().strftime('%H:%M:%S.%f'))
+    xs.append(dt.datetime.now().strftime('%H:%M:%S'))
     ys.append(temp_c)
 
     # Niet meer dan 20 waarden tegelijk in beeld
@@ -30,5 +32,5 @@ def animate(i, xs, ys):
     plt.subplots_adjust(bottom=0.30)
     plt.ylabel('Temperatuur (°C)')
 
-ani = animation.FuncAnimation(fig, animate, fargs=(xs, ys), interval=30000)  # delay = 60000ms = 60 sec
+ani = animation.FuncAnimation(fig, animate, fargs=(xs, ys), interval=1000)  # delay = 60000ms = 60 sec
 plt.show()
