@@ -1,13 +1,10 @@
 from tkinter import *
 from tkinter import ttk
 import tkinter as tk
-import random
-import time
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from pandas import DataFrame
 import matplotlib.pyplot as plt
 from Startpage import StartPage
-import matplotlib.animation as anim
 
 """
 In deze file staan meerdere klassen. 
@@ -15,7 +12,6 @@ Elke klasse is een van de 5 Arduino pagina's voor de 5 mogelijke besturingseenhe
 
 ToDo:
 Live grafieken toevoegen die de data van de sensoren laten zien. 
-Grafiek 1: temperatuur per 40 seconden, grafiek 2: lichtintensiteit per 30 seconden.
 Er moet gekeken worden wannneer een grens berijkt wordt.
 Er moet doorgegeven worden dat de roluiken uitgerold moeten worden wanneer deze grens berijkt wordt.
 Er moet doorgegeven worden dat de roluiken ingerold moeten worden wanneer de temperatuur/lichtintensiteit zich weer

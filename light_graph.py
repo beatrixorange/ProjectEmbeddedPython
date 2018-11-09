@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
 """
-Temperatuur per 60 seconden
+Lichtintensiteit per 60 seconden
 """
 
 fig = plt.figure()
@@ -13,11 +13,11 @@ ys = []
 
 def animate(i, xs, ys):
 
-    # Lees de temperatuur
-    temp_c = ...
+    # Lees de lichtintensiteit
+    licht = ...
 
     xs.append(dt.datetime.now().strftime('%H:%M:%S.%f'))
-    ys.append(temp_c)
+    ys.append(licht)
 
     # Niet meer dan 20 waarden tegelijk in beeld
     xs = xs[-20:]
@@ -28,7 +28,7 @@ def animate(i, xs, ys):
 
     plt.xticks(rotation=45, ha='right')
     plt.subplots_adjust(bottom=0.30)
-    plt.ylabel('Temperatuur (°C)')
+    plt.ylabel('Lichtintensiteit')
 
-ani = animation.FuncAnimation(fig, animate, fargs=(xs, ys), interval=30000)  # delay = 60000ms = 60 sec
+ani = animation.FuncAnimation(fig, animate, fargs=(xs, ys), interval=40000)  # delay = 60000ms = 60 sec
 plt.show()
