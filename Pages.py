@@ -6,14 +6,12 @@ from pandas import DataFrame
 import matplotlib.pyplot as plt
 from Startpage import StartPage
 
-
 """
 In deze file staan meerdere klassen. 
 Elke klasse is een van de 5 Arduino pagina's voor de 5 mogelijke besturingseenheden.
 
 ToDo:
 Live grafieken toevoegen die de data van de sensoren laten zien. 
-Grafiek 1: temperatuur per 40 seconden, grafiek 2: lichtintensiteit per 30 seconden.
 Er moet gekeken worden wannneer een grens berijkt wordt.
 Er moet doorgegeven worden dat de roluiken uitgerold moeten worden wanneer deze grens berijkt wordt.
 Er moet doorgegeven worden dat de roluiken ingerold moeten worden wanneer de temperatuur/lichtintensiteit zich weer
@@ -29,8 +27,8 @@ class Arduino1(StartPage):
         label.grid(column=1, row=0, sticky=N)
 
         #  Voorbeeld grafiek temperatuur
-        data = {'Tijd': [14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-                'Temperatuur': [25,26,27,28,24,26,27,25,24,26]}
+        data = {'Tijd': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                'Temperatuur': [25, 26, 27, 28, 24, 26, 27, 25, 24, 26]}
         df = DataFrame(data, columns=['Tijd', 'Temperatuur'])
         df = df[['Tijd', 'Temperatuur']].groupby('Tijd').sum()
         figure = plt.Figure(figsize=(7, 5), dpi=100)
@@ -65,7 +63,7 @@ class Arduino1(StartPage):
 
     def uitrolgrens_t(self):
         if self.uitrol_choiceVar.get() == self.uitrol_choices[0]:
-            self.temp_grens = None
+            self.temp_grens = 0
             print("Automatisch uitrollen is uitgeschakeld.")
         else:
             s = self.uitrol_choiceVar.get().split('°')
@@ -74,8 +72,11 @@ class Arduino1(StartPage):
                   "is.")
 
     def check_grens(self):  # temperatuur moet ergens opgehaald worden
-        if self.temp_grens is not None and 'Temperatuur' > self.uitrol_choiceVar.get():
-            StartPage.rolluik_uitrollen()
+        if self.temp_grens != 0 and 'Temperatuur' > self.uitrol_choiceVar.get():
+            StartPage.rolluik_uitrollen(self)
+            self.t_grens = True
+        else:
+            self.t_grens = False
 
 
 class Arduino2(StartPage):
@@ -90,7 +91,7 @@ class Arduino2(StartPage):
 
         #  Voorbeeld grafiek lichtintensiteit
         data2 = {'Tijd': [14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-                 'Lichtintensiteit': [25,26,27,28,24,26,27,25,24,26]}
+                 'Lichtintensiteit': [25, 26, 27, 28, 24, 26, 27, 25, 24, 26]}
         df2 = DataFrame(data2, columns=['Tijd', 'Lichtintensiteit'])
         df2 = df2[['Tijd', 'Lichtintensiteit']].groupby('Tijd').sum()
         figure2 = plt.Figure(figsize=(7, 5), dpi=100)
@@ -128,7 +129,7 @@ class Arduino2(StartPage):
 
     def uitrolgrens_l(self):
         if self.uitrol_choiceVar.get() == self.uitrol_choices[0]:
-            self.licht_grens = None
+            self.licht_grens = 0
             print("Automatisch uitrollen is uitgeschakeld.")
         else:
             s = self.uitrol_choiceVar.get().split(' ')
@@ -137,8 +138,11 @@ class Arduino2(StartPage):
                   "overschrijdt.")
 
     def check_grens(self):  # Lichtintensiteit moet ergens opgehaald worden
-        if self.licht_grens is not None and 'Lichtintensiteit' > self.licht_grens:
-            StartPage.rolluik_uitrollen()
+        if self.licht_grens != 0 and 'Lichtintensiteit' > self.licht_grens:
+            StartPage.rolluik_uitrollen(self)
+            self.l_grens = True
+        else:
+            self.l_grens = False
 
 
 class Arduino3(StartPage):
