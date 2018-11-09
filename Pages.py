@@ -112,9 +112,6 @@ class Arduino2(StartPage):
         uitrolgrens_l = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_l(), width=8)
         uitrolgrens_l.grid(column=1, row=0, sticky=N, pady=100)
 
-        uitrolgrens_t = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_t(2), width=8)
-        uitrolgrens_t.grid(column=1, row=0, sticky=N, pady=100)
-
         uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(2), width=8)
         uitrollen.grid(column=1, row=0, sticky=N, pady=150)
 
