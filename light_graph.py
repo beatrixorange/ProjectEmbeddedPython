@@ -2,12 +2,14 @@ import datetime as dt
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import random
-
+import pandas as pd
 """
 Lichtintensiteit per 60 seconden
+
+interrupt staat nog op 1 sec voor testen
 """
 
-fig = plt.figure()
+fig = plt.Figure(figsize=(7, 5), dpi=100)
 ax = fig.add_subplot(1, 1, 1)
 xs = []
 ys = []
@@ -30,6 +32,7 @@ def animate(i, xs, ys):
     plt.xticks(rotation=45, ha='right')
     plt.subplots_adjust(bottom=0.30)
     plt.ylabel('Lichtintensiteit')
+
 
 ani = animation.FuncAnimation(fig, animate, fargs=(xs, ys), interval=1000)  # delay = 60000ms = 60 sec
 plt.show()

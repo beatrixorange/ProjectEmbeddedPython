@@ -3,9 +3,10 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import random
 
-
 """
 Temperatuur per 60 seconden
+
+interrupt staat nog op 1 sec voor testen
 """
 
 fig = plt.figure(figsize=(7, 5), dpi=100)

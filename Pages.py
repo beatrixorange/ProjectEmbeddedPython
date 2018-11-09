@@ -2,11 +2,10 @@ from tkinter import *
 from tkinter import ttk
 import tkinter as tk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from pandas import DataFrame
 import matplotlib.pyplot as plt
 from Startpage import StartPage
 import temperature_graph
-
+import light_graph
 """
 In deze file staan meerdere klassen. 
 Elke klasse is een van de 5 Arduino pagina's voor de 5 mogelijke besturingseenheden.
@@ -87,14 +86,7 @@ class Arduino2(StartPage):
         label.grid(column=1, row=0, sticky=N)
 
         #  Voorbeeld grafiek lichtintensiteit
-        data2 = {'Tijd': [14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-                 'Lichtintensiteit': [25, 26, 27, 28, 24, 26, 27, 25, 24, 26]}
-        df2 = DataFrame(data2, columns=['Tijd', 'Lichtintensiteit'])
-        df2 = df2[['Tijd', 'Lichtintensiteit']].groupby('Tijd').sum()
-        figure2 = plt.Figure(figsize=(7, 5), dpi=100)
-        ax2 = figure2.add_subplot(111)
-        self.graph2 = FigureCanvasTkAgg(figure2, self)
-        df2.plot(kind='line', legend=True, ax=ax2, color='b', fontsize=10)
+        self.graph2 = FigureCanvasTkAgg(light_graph.fig, self)
         self.graph2.get_tk_widget().grid(column=0, row=0)
 
         self.uitrol_label = tk.Label(self, text=" Uitrolgrens:")
