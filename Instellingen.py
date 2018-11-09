@@ -24,39 +24,51 @@ class Instellingen(StartPage):
 
         self.uitrol_label = tk.Label(self, text=" Maximale uitrolstand:")
         self.uitrol_label.pack()
-        self.uitrol_choiceVar = tk.StringVar()
-        self.uitrol_choices = ("max", "-10 cm", "-20 cm", "-30 cm")
-        self.uitrol_choiceVar.set(self.uitrol_choices[0])
-        self.uitrol_cb = ttk.Combobox(self, textvariable=self.uitrol_choiceVar, values=self.uitrol_choices, width=15)
-        self.uitrol_cb.pack(pady=10)
+        self.max_uitrolstand = tk.Entry(self)
+        self.max_uitrolstand.pack(pady=10)
 
         self.inrol_label = tk.Label(self, text="Maximale inrolstand:")
         self.inrol_label.pack()
-        self.inrol_choiceVar = tk.StringVar()
-        self.inrol_choices = ("min", "10 cm", "20 cm", "30 cm")
-        self.inrol_choiceVar.set(self.inrol_choices[0])
-        self.inrol_cb = ttk.Combobox(self, textvariable=self.inrol_choiceVar, values=self.inrol_choices, width=15)
-        self.inrol_cb.pack(pady=10)
+        self.min_uitrolstand = tk.Entry(self)
+        self.min_uitrolstand.pack(pady=10)
 
-        toepassen = tk.Button(self, text="Toepassen", command=lambda: self.toepassen(), width=10)
-        toepassen.pack(fill="y", pady=10)
+        toepassen1 = tk.Button(self, text="Toepassen min", command=lambda: self.toepassen_min(), width=20)
+        toepassen1.pack(fill="y", pady=10)
+
+        toepassen2 = tk.Button(self, text="Toepassen max", command=lambda: self.toepassen_min(), width=20)
+        toepassen2.pack(fill="y", pady=5)
 
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=10)
         terug.pack(fill="y", pady=10)
 
-    def toepassen(self):
-        if self.uitrol_choiceVar.get() == self.uitrol_choices[0]:
-            Startpage.uitrolstand = 0
-            print("De maximale uitrolstand is nu -", Startpage.uitrolstand, "cm.")
-        else:
-            s = self.uitrol_choiceVar.get().split(' ')
-            Startpage.uitrolstand = int(s[0])
-            print("De maximale uitrolstand is nu:", Startpage.uitrolstand, "cm.")
+    def toepassen_min(self):
+        min = self.min_uitrolstand.get()
+        i = 0
+        print(min+ " 1")
+        if min != None:
+            print(min+ " 2")
+            print(min+ " 3")
+            a = str(min)
+            char1 = "#".encode()
+            for c in Connection.connections:
+                c.write(char1)
+                while len(a) > i:
+                    numbers = a[i].encode()
+                    c.write(numbers)
+                    i = i + 1
+                c.write(char1)
 
-        if self.inrol_choiceVar.get() == self.inrol_choices[0]:
-            Startpage.inrolstand = 0
-            print("De maximale inrolstand is nu", Startpage.inrolstand, "cm.")
-        else:
-            s = self.inrol_choiceVar.get().split(' ')
-            Startpage.inrolstand = int(s[0])
-            print("De maximale inrolstand is nu:", Startpage.inrolstand, "cm.")
+    def toepassen_max(self):
+        max = self.min_uitrolstand.get()
+        i = 0
+        if min != None:
+            a = str(max)
+            char1 = "#".encode()
+            for c in Connection.connections:
+                c.write(char1)
+                while len(a) > i:
+                    numbers = a[i].encode()
+                    c.write(numbers)
+                    i = i + 1
+                c.write(char1)
+
