@@ -17,7 +17,6 @@ Er moet doorgegeven worden dat de roluiken uitgerold moeten worden wanneer deze 
 Er moet doorgegeven worden dat de roluiken ingerold moeten worden wanneer de temperatuur/lichtintensiteit zich weer
 onder de grens bevindt.
 """
-afstand_list = []
 
 class Arduino1(StartPage):
     def __init__(self, parent, controller):
@@ -80,6 +79,9 @@ class Arduino1(StartPage):
             self.t_grens = True
         else:
             self.t_grens = False
+
+    def get_uitrol_afstand(self):
+        return self.uitrol_afstand
 
 
 class Arduino2(StartPage):
