@@ -111,16 +111,16 @@ class Arduino2(StartPage):
         uitrolgrens_l = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_l(), width=8)
         uitrolgrens_l.grid(column=1, row=0, sticky=N, pady=100)
 
-        uitrolgrens_t = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_t(), width=8)
+        uitrolgrens_t = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_t(2), width=8)
         uitrolgrens_t.grid(column=1, row=0, sticky=N, pady=100)
 
         uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(2), width=8)
         uitrollen.grid(column=1, row=0, sticky=N, pady=150)
 
-        inhalen = tk.Button(self, text="Inhalen", command=lambda: self.rolluik_inhalen(), width=8)
+        inhalen = tk.Button(self, text="Inhalen", command=lambda: self.rolluik_inhalen(2), width=8)
         inhalen.grid(column=1, row=0, sticky=N, pady=180)
 
-        stoppen = tk.Button(self, text="Stoppen", command=lambda: self.stoppen(), width=8)
+        stoppen = tk.Button(self, text="Stoppen", command=lambda: self.stoppen(2), width=8)
         stoppen.grid(column=1, row=0, sticky=N, pady=210)
 
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
@@ -145,7 +145,6 @@ class Arduino3(StartPage):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        self.add_ui()
 
         label = tk.Label(self, text="Sensor 3", font='Helvetica 18 bold', width=12)
         label.grid(column=1, row=0, sticky=N)
@@ -161,10 +160,10 @@ class Arduino3(StartPage):
         uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(3), width=8)
         uitrollen.grid(column=1, row=0, sticky=N, pady=150)
 
-        inhalen = tk.Button(self, text="Inhalen", command=lambda: self.rolluik_inhalen(), width=8)
+        inhalen = tk.Button(self, text="Inhalen", command=lambda: self.rolluik_inhalen(3), width=8)
         inhalen.grid(column=1, row=0, sticky=N, pady=180)
 
-        stoppen = tk.Button(self, text="Stoppen", command=lambda: self.stoppen(), width=8)
+        stoppen = tk.Button(self, text="Stoppen", command=lambda: self.stoppen(3), width=8)
         stoppen.grid(column=1, row=0, sticky=N, pady=210)
 
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
@@ -175,7 +174,6 @@ class Arduino4(StartPage):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        self.add_ui()
 
         label = tk.Label(self, text="Sensor 4", font='Helvetica 18 bold', width=12)
         label.grid(column=1, row=0, sticky=N)
@@ -191,10 +189,10 @@ class Arduino4(StartPage):
         uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(4), width=8)
         uitrollen.grid(column=1, row=0, sticky=N, pady=150)
 
-        inhalen = tk.Button(self, text="Inhalen", command=lambda: self.rolluik_inhalen(), width=8)
+        inhalen = tk.Button(self, text="Inhalen", command=lambda: self.rolluik_inhalen(4), width=8)
         inhalen.grid(column=1, row=0, sticky=N, pady=180)
 
-        stoppen = tk.Button(self, text="Stoppen", command=lambda: self.stoppen(), width=8)
+        stoppen = tk.Button(self, text="Stoppen", command=lambda: self.stoppen(4), width=8)
         stoppen.grid(column=1, row=0, sticky=N, pady=210)
 
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
@@ -205,7 +203,6 @@ class Arduino5(StartPage):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        self.add_ui()
 
         label = tk.Label(self, text="Sensor 5", font='Helvetica 18 bold', width=12)
         label.grid(column=1, row=0, sticky=N)
@@ -221,10 +218,10 @@ class Arduino5(StartPage):
         uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(5), width=8)
         uitrollen.grid(column=1, row=0, sticky=N, pady=150)
 
-        inhalen = tk.Button(self, text="Inhalen", command=lambda: self.rolluik_inhalen(), width=8)
+        inhalen = tk.Button(self, text="Inhalen", command=lambda: self.rolluik_inhalen(5), width=8)
         inhalen.grid(column=1, row=0, sticky=N, pady=180)
 
-        stoppen = tk.Button(self, text="Stoppen", command=lambda: self.stoppen(), width=8)
+        stoppen = tk.Button(self, text="Stoppen", command=lambda: self.stoppen(5), width=8)
         stoppen.grid(column=1, row=0, sticky=N, pady=210)
 
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)

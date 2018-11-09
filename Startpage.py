@@ -71,19 +71,6 @@ class StartPage(tk.Frame):
                     return False
         aangesloten()
 
-    def add_ui(self):
-        uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(), width=8)
-        uitrollen.grid(column=1, row=0, sticky=N, pady=150)
-
-        inhalen = tk.Button(self, text="Inhalen", command=lambda: self.rolluik_inhalen(), width=8)
-        inhalen.grid(column=1, row=0, sticky=N, pady=180)
-
-        stoppen = tk.Button(self, text="Stoppen", command=lambda: self.stoppen(), width=8)
-        stoppen.grid(column=1, row=0, sticky=N, pady=210)
-
-        terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
-        terug.grid(column=1, row=0, sticky=N, pady=240)
-
     def rolluik_uitrollen(self, id):
         i = 1
         while i < 6:
