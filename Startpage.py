@@ -56,11 +56,11 @@ class StartPage(tk.Frame):
                 print(len(Connection.connections))
             if len(Connection.connections) >= 2:
                 a2.config(state=NORMAL)
-            if len(Connection.connections) == 3:
+            if len(Connection.connections) >= 3:
                 a3.config(state=NORMAL)
-            if len(Connection.connections) == 4:
+            if len(Connection.connections) >= 4:
                 a4.config(state=NORMAL)
-            if len(Connection.connections) == 5:
+            if len(Connection.connections) >= 5:
                 a5.config(state=NORMAL)
 
         def find_arduino(serial_number):
@@ -72,57 +72,29 @@ class StartPage(tk.Frame):
         aangesloten()
 
     def rolluik_uitrollen(self, id):
-        i = 1
-        while i < 6:
-            if id == i:
-                c = Connection.connections[i-1]
-                char1 = ('&').encode()
-                char2 = ('d').encode()
-                char3 = ('&').encode()
-                c.write(char1)
-                c.write(char2)
-                c.write(char3)
-                print(id)
-            i += 1
-
-
-
-    def stuur_id(self):
-        i = 1
-        for c in Connection.connections:
-            c.write("&").encode()
-            c.write(i).encode()
-            c.write("&").encode()
-            id_list.append(i)
-            i + 1
+        c = Connection.connections[id-1]
+        char1 = '&'.encode()
+        char2 = 'd'.encode()
+        c.write(char1)
+        c.write(char2)
+        c.write(char1)
 
     def rolluik_inhalen(self, id):
-        i = 1
-        while i < 6:
-            if id == i:
-                c = Connection.connections[i-1]
-                char1 = ('&').encode()
-                char2 = ('u').encode()
-                char3 = ('&').encode()
-                c.write(char1)
-                c.write(char2)
-                c.write(char3)
-                print(id)
-            i += 1
+        c = Connection.connections[id-1]
+        char1 = ('&').encode()
+        char2 = ('u').encode()
+        c.write(char1)
+        c.write(char2)
+        c.write(char1)
 
     def stoppen(self, id):
-        i = 1
-        while i < 6:
-            if id == i:
-                c = Connection.connections[i-1]
-                char1 = ('&').encode()
-                char2 = ('s').encode()
-                char3 = ('&').encode()
-                c.write(char1)
-                c.write(char2)
-                c.write(char3)
-                print(id)
-            i += 1
+        c = Connection.connections[id-1]
+        char1 = ('&').encode()
+        char2 = ('s').encode()
+        c.write(char1)
+        c.write(char2)
+        c.write(char1)
+
 
     # Deze functie zorgt ervoor dat je naar de StartPage gaat.
     def home(self):

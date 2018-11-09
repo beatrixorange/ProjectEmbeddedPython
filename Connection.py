@@ -2,10 +2,9 @@ import serial
 import threading
 import queue
 import Pages
-
 ports = ['COM%s' % (i + 1) for i in range(256)]
 
-#queue = queue.Queue(1000)
+queue = queue.Queue(1000)
 connections = []
 threads = []
 
@@ -33,6 +32,7 @@ def inlezen(s):
                         id = x
                     else:
                         if x != "#":
+                            x = s.read()
                             afstand = str(afstand) + x
                         else:
                             Pages.afstand_list.append(int(afstand))
@@ -55,6 +55,15 @@ def inlezen(s):
                         break
 
 
+def stuur_id():
+    i = 1
+    for c in connections:
+        char1 = "&".encode()
+        id = str(i).encode()
+        c.write(char1)
+        c.write(id)
+        c.write(char1)
+        i = i + 1
 
 for port in ports:
     try:
@@ -62,6 +71,7 @@ for port in ports:
         thread = threading.Thread(target=inlezen, args=(s,),).start()
         threads.append(thread)
         connections.append(s)
+        stuur_id()
         print("Connected")
     except(OSError, serial.SerialException):
         pass
