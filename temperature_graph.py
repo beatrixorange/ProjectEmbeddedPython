@@ -4,11 +4,9 @@ import random
 
 """
 Temperatuur per 60 seconden
-
-interrupt staat nog op 1 sec voor testen
 """
 
-fig = plt.figure(1, figsize=(7, 5), dpi=100)
+fig = plt.figure(1, figsize=(7, 6), dpi=100)
 ax = fig.add_subplot(111)
 xs = []
 ys = []
@@ -23,9 +21,9 @@ def animate(i, xs, ys):
     # Temperatuur toevoegen aan y-as
     ys.append(temp_c)
 
-    # Niet meer dan 7 waarden tegelijk in beeld
-    xs = xs[-7:]
-    ys = ys[-7:]
+    # Niet meer dan 20 waarden tegelijk in beeld
+    xs = xs[-20:]
+    ys = ys[-20:]
 
     ax.clear()
     ax.plot(xs, ys)

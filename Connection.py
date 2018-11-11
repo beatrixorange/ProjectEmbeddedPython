@@ -1,7 +1,6 @@
 import serial
 import threading
 import queue
-import Pages
 import Controller
 
 ports = ['COM%s' % (i + 1) for i in range(256)]

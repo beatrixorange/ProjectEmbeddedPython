@@ -4,11 +4,9 @@ import random
 
 """
 Lichtintensiteit per 60 seconden
-
-interrupt staat nog op 1 sec voor testen
 """
 
-fig2 = plt.figure(figsize=(7, 5), dpi=100)
+fig2 = plt.figure(figsize=(7, 6), dpi=100)
 ax = fig2.add_subplot(111)
 xs2 = []
 ys2 = []
@@ -23,9 +21,9 @@ def animate2(i, xs2, ys2):
     # Lichtintensiteit toevoegen aan y-as
     ys2.append(licht)
 
-    # Niet meer dan 7 waarden tegelijk in beeld
-    xs2 = xs2[-7:]
-    ys2 = ys2[-7:]
+    # Niet meer dan 20 waarden tegelijk in beeld
+    xs2 = xs2[-20:]
+    ys2 = ys2[-20:]
 
     ax.clear()
     ax.plot(xs2, ys2)

@@ -10,13 +10,6 @@ from light_graph import fig2
 """
 In deze file staan meerdere klassen. 
 Elke klasse is een van de 5 Arduino pagina's voor de 5 mogelijke besturingseenheden.
-
-ToDo:
-Live grafieken toevoegen die de data van de sensoren laten zien. 
-Er moet gekeken worden wannneer een grens berijkt wordt.
-Er moet doorgegeven worden dat de roluiken uitgerold moeten worden wanneer deze grens berijkt wordt.
-Er moet doorgegeven worden dat de roluiken ingerold moeten worden wanneer de temperatuur/lichtintensiteit zich weer
-onder de grens bevindt.
 """
 
 class Arduino1(StartPage):
@@ -29,17 +22,6 @@ class Arduino1(StartPage):
         #Temperatuurt grafiek
         canvas = FigureCanvasTkAgg(fig, self)
         canvas.get_tk_widget().grid(column=0, row=0)
-
-        self.uitrol_label = tk.Label(self, text=" Uitrolgrens:")
-        self.uitrol_label.grid(column=1, row=0, sticky=N, pady=50)
-        self.uitrol_choiceVar = tk.StringVar()
-        self.uitrol_choices = ("uit", "20°C", "25°C", "30°C", "35°C", "40°C")
-        self.uitrol_choiceVar.set(self.uitrol_choices[3])  # standard 30°C
-        self.uitrol_cb = ttk.Combobox(self, textvariable=self.uitrol_choiceVar, values=self.uitrol_choices, width=7)
-        self.uitrol_cb.grid(column=1, row=0, sticky=N, pady=70)
-
-        uitrolgrens_t = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_t(), width=8)
-        uitrolgrens_t.grid(column=1, row=0, sticky=N, pady=100)
 
         uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(1), width=8)
         uitrollen.grid(column=1, row=0, sticky=N, pady=150)
@@ -56,8 +38,20 @@ class Arduino1(StartPage):
         self.uitrol_afstand = tk.Label(self, text="Afstand word opgehaald, een moment geduld")
         self.uitrol_afstand.grid(column=1, row=0, sticky=N, pady=300)
 
+        self.uitrol_label = tk.Label(self, text=" Uitrolgrens:")
+        self.uitrol_label.grid(column=1, row=0, sticky=N, pady=50)
+        self.uitrol_choiceVar = tk.StringVar()
+        self.uitrol_choices = ("uit", "20°C", "25°C", "30°C", "35°C", "40°C")
+        self.uitrol_choiceVar.set(self.uitrol_choices[0])
+        self.uitrol_cb = ttk.Combobox(self, textvariable=self.uitrol_choiceVar, values=self.uitrol_choices, width=7)
+        self.uitrol_cb.set(self.uitrol_choices[0])
+        self.uitrol_cb.grid(column=1, row=0, sticky=N, pady=70)
+
+        t_uitrolgrens = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_t(), width=8)
+        t_uitrolgrens.grid(column=1, row=0, sticky=N, pady=100)
 
     def uitrolgrens_t(self):
+        self.uitrol_choiceVar.get()
         if self.uitrol_choiceVar.get() == self.uitrol_choices[0]:
             self.temp_grens = 0
             print("Automatisch uitrollen is uitgeschakeld.")
@@ -66,13 +60,14 @@ class Arduino1(StartPage):
             self.temp_grens = int(s[0])
             print("Het zonnescherm wordt automatisch uitgerold wanneer het warmer dan", self.uitrol_choiceVar.get(),
                   "is.")
-
+    '''
     def check_grens(self):  # temperatuur moet ergens opgehaald worden
         if self.temp_grens != 0 and 'Temperatuur' > self.uitrol_choiceVar.get():
             StartPage.rolluik_uitrollen(self)
             self.t_grens = True
         else:
             self.t_grens = False
+    '''
 
     def get_uitrol_afstand(self):
         return self.uitrol_afstand
@@ -91,18 +86,6 @@ class Arduino2(StartPage):
         self.graph2 = FigureCanvasTkAgg(fig2, self)
         self.graph2.get_tk_widget().grid(column=0, row=0)
 
-        self.uitrol_label = tk.Label(self, text=" Uitrolgrens:")
-        self.uitrol_label.grid(column=1, row=0, sticky=N, pady=50)
-        self.uitrol_choiceVar = tk.StringVar()
-        self.uitrol_choices = ("uit", "50 klx", "60 klx", "70 klx", "80 klx", "90 klx", "100 klx", "110 klx", "120 klx",
-                               "130 klx")
-        self.uitrol_choiceVar.set(self.uitrol_choices[6])  # standaard op 100 klx
-        self.uitrol_cb = ttk.Combobox(self, textvariable=self.uitrol_choiceVar, values=self.uitrol_choices, width=7)
-        self.uitrol_cb.grid(column=1, row=0, sticky=N, pady=70)
-
-        uitrolgrens_l = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_l(), width=8)
-        uitrolgrens_l.grid(column=1, row=0, sticky=N, pady=100)
-
         uitrollen = tk.Button(self, text="Uitrollen", command=lambda: self.rolluik_uitrollen(2), width=8)
         uitrollen.grid(column=1, row=0, sticky=N, pady=150)
 
@@ -116,24 +99,39 @@ class Arduino2(StartPage):
         terug.grid(column=1, row=0, sticky=N, pady=240)
 
         self.uitrol_afstand = tk.Label(self, text="Afstand word opgehaald, een moment geduld")
+
+        l_uitrol_label = tk.Label(self, text=" Uitrolgrens:")
+        l_uitrol_label.grid(column=1, row=0, sticky=N, pady=50)
+        self.l_uitrol_choiceVar = tk.StringVar()
+        self.l_uitrol_choices = ("uit", "50", "60", "70", "80", "90", "100")
+        self.l_uitrol_choiceVar.set(self.l_uitrol_choices[0])
+        self.l_uitrol_cb = ttk.Combobox(self, textvariable=self.l_uitrol_choiceVar, values=self.l_uitrol_choices, width=7)
+        self.l_uitrol_cb.set(self.l_uitrol_choices[0])
+        self.l_uitrol_cb.grid(column=1, row=0, sticky=N, pady=70)
+
+        l_uitrolgrens = tk.Button(self, text="Toepassen", command=lambda: self.uitrolgrens_l(), width=8)
+        l_uitrolgrens.grid(column=1, row=0, sticky=N, pady=100)
+
         self.uitrol_afstand.grid(column=1, row=0, sticky=N, pady=300)
 
     def uitrolgrens_l(self):
-        if self.uitrol_choiceVar.get() == self.uitrol_choices[0]:
+        self.l_uitrol_choiceVar.get()
+        if self.l_uitrol_choiceVar.get() == self.l_uitrol_choices[0]:
             self.licht_grens = 0
             print("Automatisch uitrollen is uitgeschakeld.")
         else:
-            s = self.uitrol_choiceVar.get().split(' ')
-            self.licht_grens = int(s[0])
-            print("Het zonnescherm wordt automatisch uigerold wanneer de lichtintesiteit", self.uitrol_choiceVar.get(),
+            self.licht_grens = int(self.l_uitrol_choiceVar.get())
+            print("Het zonnescherm wordt automatisch uigerold wanneer de lichtintesiteit", self.l_uitrol_choiceVar.get(),
                   "overschrijdt.")
 
+    '''
     def check_grens(self):  # Lichtintensiteit moet ergens opgehaald worden
         if self.licht_grens != 0 and 'Lichtintensiteit' > self.licht_grens:
             StartPage.rolluik_uitrollen(self)
             self.l_grens = True
         else:
             self.l_grens = False
+    '''
 
     def get_uitrol_afstand(self):
         return self.uitrol_afstand

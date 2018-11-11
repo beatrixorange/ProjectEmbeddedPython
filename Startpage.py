@@ -10,10 +10,7 @@ Serie nummer van de arduino toevoegen aan de 'aangesloten' functie om te kunnen 
 Uitrollen, inhalen, stoppen functies werkend maken.
 """
 
-uitrolstand = 0
-inrolstand = 0
 id_list = []
-
 
 class StartPage(tk.Frame):
     def __init__(self, parent, controller):

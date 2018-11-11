@@ -1,13 +1,8 @@
 import tkinter as tk
-from tkinter import ttk
 from Startpage import StartPage
-import Startpage
 import Connection
 """
 Hier kunnen de instellingen geregeld worden van de uitrol/inrolstand. 
-
-ToDo:
-Hoe groot is het zonnescherm? (dus tot hoe ver kan het maximaal uitgerold worden?)
 """
 
 class Instellingen(StartPage):
