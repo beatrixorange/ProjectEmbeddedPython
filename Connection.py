@@ -82,6 +82,7 @@ def inlezen(s):
                 else:
                     light_list[id] = []
                     light_list[id].append(int(result))
+
             if x == '%':
                 checker = False
                 id = 0

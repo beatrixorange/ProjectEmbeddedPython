@@ -4,8 +4,9 @@ import tkinter as tk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 from Startpage import StartPage
-import temperature_graph
-import light_graph
+from temperature_graph import fig
+from light_graph import fig2
+
 """
 In deze file staan meerdere klassen. 
 Elke klasse is een van de 5 Arduino pagina's voor de 5 mogelijke besturingseenheden.
@@ -25,9 +26,9 @@ class Arduino1(StartPage):
         label = tk.Label(self, text="Temperatuur", font='Helvetica 18 bold', width=12)
         label.grid(column=1, row=0, sticky=N)
 
-        #  Voorbeeld grafiek temperatuur
-        self.graph1 = FigureCanvasTkAgg(temperature_graph.fig, self)
-        self.graph1.get_tk_widget().grid(column=0, row=0)
+        #Temperatuurt grafiek
+        canvas = FigureCanvasTkAgg(fig, self)
+        canvas.get_tk_widget().grid(column=0, row=0)
 
         self.uitrol_label = tk.Label(self, text=" Uitrolgrens:")
         self.uitrol_label.grid(column=1, row=0, sticky=N, pady=50)
@@ -51,9 +52,6 @@ class Arduino1(StartPage):
 
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
         terug.grid(column=1, row=0, sticky=N, pady=240)
-
-        self.uitrol_afstand = tk.Label(self, text="Het rolluik is 2 meter uitgerold")
-        self.uitrol_afstand.grid(column=1, row=0, sticky=N, pady=300)
 
 
     def uitrolgrens_t(self):
@@ -83,12 +81,11 @@ class Arduino2(StartPage):
         tk.Frame.__init__(self, parent)
         self.controller = controller
 
-
         label = tk.Label(self, text="Lichtintensiteit", font='Helvetica 18 bold', width=12)
         label.grid(column=1, row=0, sticky=N)
 
-        #  Voorbeeld grafiek lichtintensiteit
-        self.graph2 = FigureCanvasTkAgg(light_graph.fig, self)
+        #Lichtintensiteit grafiek
+        self.graph2 = FigureCanvasTkAgg(fig2, self)
         self.graph2.get_tk_widget().grid(column=0, row=0)
 
         self.uitrol_label = tk.Label(self, text=" Uitrolgrens:")
@@ -114,9 +111,6 @@ class Arduino2(StartPage):
 
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
         terug.grid(column=1, row=0, sticky=N, pady=240)
-
-        self.uitrol_afstand = tk.Label(self, text="Het rolluik is 2 meter uitgerold")
-        self.uitrol_afstand.grid(column=1,row=0,sticky=N,pady=100)
 
     def uitrolgrens_l(self):
         if self.uitrol_choiceVar.get() == self.uitrol_choices[0]:

@@ -1,38 +1,35 @@
 import datetime as dt
 import matplotlib.pyplot as plt
-import matplotlib.animation as animation
 import random
-import pandas as pd
+
 """
 Lichtintensiteit per 60 seconden
 
 interrupt staat nog op 1 sec voor testen
 """
 
-fig = plt.Figure(figsize=(7, 5), dpi=100)
-ax = fig.add_subplot(1, 1, 1)
-xs = []
-ys = []
+fig2 = plt.figure(figsize=(7, 5), dpi=100)
+ax = fig2.add_subplot(111)
+xs2 = []
+ys2 = []
 
-def animate(i, xs, ys):
+def animate2(i, xs2, ys2):
 
-    # Lees de lichtintensiteit
+    #TODO Hier moet de lichtintensiteit gelezen worden
     licht = random.randint(50, 130)
 
-    xs.append(dt.datetime.now().strftime('%H:%M:%S'))
-    ys.append(licht)
+    # Tijd toevoegen aan x-as
+    xs2.append(dt.datetime.now().strftime('%H:%M:%S'))
+    # Lichtintensiteit toevoegen aan y-as
+    ys2.append(licht)
 
-    # Niet meer dan 20 waarden tegelijk in beeld
-    xs = xs[-20:]
-    ys = ys[-20:]
+    # Niet meer dan 7 waarden tegelijk in beeld
+    xs2 = xs2[-7:]
+    ys2 = ys2[-7:]
 
     ax.clear()
-    ax.plot(xs, ys)
+    ax.plot(xs2, ys2)
 
-    plt.xticks(rotation=45, ha='right')
-    plt.subplots_adjust(bottom=0.30)
-    plt.ylabel('Lichtintensiteit')
-
-
-ani = animation.FuncAnimation(fig, animate, fargs=(xs, ys), interval=1000)  # delay = 60000ms = 60 sec
-plt.show()
+    ax.set_xticklabels(xs2, rotation=45, ha='right')
+    fig2.subplots_adjust(bottom=0.30)
+    ax.set_ylabel('Lichtintensiteit')
