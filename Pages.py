@@ -53,6 +53,9 @@ class Arduino1(StartPage):
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
         terug.grid(column=1, row=0, sticky=N, pady=240)
 
+        self.uitrol_afstand = tk.Label(self, text="Afstand word opgehaald, een moment geduld")
+        self.uitrol_afstand.grid(column=1, row=0, sticky=N, pady=300)
+
 
     def uitrolgrens_t(self):
         if self.uitrol_choiceVar.get() == self.uitrol_choices[0]:
@@ -112,6 +115,9 @@ class Arduino2(StartPage):
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
         terug.grid(column=1, row=0, sticky=N, pady=240)
 
+        self.uitrol_afstand = tk.Label(self, text="Afstand word opgehaald, een moment geduld")
+        self.uitrol_afstand.grid(column=1, row=0, sticky=N, pady=300)
+
     def uitrolgrens_l(self):
         if self.uitrol_choiceVar.get() == self.uitrol_choices[0]:
             self.licht_grens = 0
@@ -128,6 +134,9 @@ class Arduino2(StartPage):
             self.l_grens = True
         else:
             self.l_grens = False
+
+    def get_uitrol_afstand(self):
+        return self.uitrol_afstand
 
 
 class Arduino3(StartPage):
@@ -155,6 +164,12 @@ class Arduino3(StartPage):
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
         terug.grid(column=1, row=0, sticky=N, pady=240)
 
+        self.uitrol_afstand = tk.Label(self, text="Afstand word opgehaald, een moment geduld")
+        self.uitrol_afstand.grid(column=1, row=0, sticky=N, pady=300)
+
+    def get_uitrol_afstand(self):
+        return self.uitrol_afstand
+
 
 class Arduino4(StartPage):
     def __init__(self, parent, controller):
@@ -181,6 +196,12 @@ class Arduino4(StartPage):
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
         terug.grid(column=1, row=0, sticky=N, pady=240)
 
+        self.uitrol_afstand = tk.Label(self, text="Afstand word opgehaald, een moment geduld")
+        self.uitrol_afstand.grid(column=1, row=0, sticky=N, pady=300)
+
+    def get_uitrol_afstand(self):
+        return self.uitrol_afstand
+
 
 class Arduino5(StartPage):
     def __init__(self, parent, controller):
@@ -206,3 +227,9 @@ class Arduino5(StartPage):
 
         terug = tk.Button(self, text="Terug", command=lambda: self.home(), width=8)
         terug.grid(column=1, row=0, sticky=N, pady=240)
+
+        self.uitrol_afstand = tk.Label(self, text="Afstand word opgehaald, een moment geduld")
+        self.uitrol_afstand.grid(column=1, row=0, sticky=N, pady=300)
+
+    def get_uitrol_afstand(self):
+        return self.uitrol_afstand
