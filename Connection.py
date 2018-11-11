@@ -43,7 +43,7 @@ def inlezen(s):
                 distance = []
                 count = 0
                 running = 1
-                while running == 1:
+                while running == 1 and x != '&' and x != '$' and x != '%':
                     x = s.read()
                     x = bytes(x).decode()
                     if x != '.' and checker is False:       # fetch ID
@@ -64,7 +64,7 @@ def inlezen(s):
                 id = 0
                 brightness = []
                 running = 1
-                while running == 1:
+                while running == 1  and x != '&' and x != '#' and x != '%':
                     x = s.read()
                     x = bytes(x).decode()
                     if x != '.' and checker == 0:  # fetch ID
@@ -88,7 +88,7 @@ def inlezen(s):
                 id = 0
                 temperatures = []
                 running = 1
-                while running == 1:
+                while running == 1 and x != '&' and x != '$' and x != '#':
                     x = s.read()
                     x = bytes(x).decode()
                     if x != '.' and checker is False:  # fetch ID
