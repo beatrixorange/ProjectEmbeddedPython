@@ -1,6 +1,6 @@
 import datetime as dt
 import matplotlib.pyplot as plt
-import random
+from Connection import temperature_list
 
 """
 Temperatuur per 60 seconden
@@ -10,11 +10,13 @@ fig = plt.figure(1, figsize=(7, 6), dpi=100)
 ax = fig.add_subplot(111)
 xs = []
 ys = []
+list = []
 
 def animate(i, xs, ys):
 
-    # TODO Hier moet de temperatuur gelezen worden
-    temp_c = random.randint(10, 30)
+    # Hier moet de temperatuur gelezen worden
+    list = temperature_list('1')
+    temp_c = list[-1]
 
     # Tijd toevoegen aan x-as
     xs.append(dt.datetime.now().strftime('%H:%M:%S'))
