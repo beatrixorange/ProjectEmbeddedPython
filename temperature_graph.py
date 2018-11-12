@@ -1,6 +1,7 @@
 import datetime as dt
 import matplotlib.pyplot as plt
 import random
+import Connection
 
 """
 Temperatuur per 60 seconden
@@ -18,8 +19,14 @@ def animate(i, xs, ys):
 
     # Tijd toevoegen aan x-as
     xs.append(dt.datetime.now().strftime('%H:%M:%S'))
+
+    result = 0
+    if (Connection.temperature_list.keys().__contains__('1')):
+        temp = Connection.temperature_list['1']
+        result = temp[-1]
+
     # Temperatuur toevoegen aan y-as
-    ys.append(temp_c)
+    ys.append(result)
 
     # Niet meer dan 20 waarden tegelijk in beeld
     xs = xs[-20:]
