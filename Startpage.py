@@ -60,12 +60,6 @@ class StartPage(tk.Frame):
             if len(Connection.connections) >= 5:
                 a5.config(state=NORMAL)
 
-        def find_arduino(serial_number):
-            for pinfo in Connection.serial.tools.list_ports.comports():
-                if pinfo.serial_number == serial_number:
-                    return True
-                else:
-                    return False
         aangesloten()
 
     def rolluik_uitrollen(self, id):

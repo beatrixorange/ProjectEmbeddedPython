@@ -14,13 +14,6 @@ temperature_list = {}         # key = id, value = list with temperature sensor i
 i = 0
 
 
-def sturen(s, data):
-    tosend = str(data).encode()
-    print('send: ' + str(data))
-    s.write(tosend)
-    print('tosend: ' +  str(tosend))
-
-
 def sum_array_elements(list):
     result = 0
     count = 0
@@ -31,7 +24,6 @@ def sum_array_elements(list):
     return result
 
 def inlezen(s):
-    # TODO Uitvinden wat we met het ID doen.
     while True:
         x = s.read()
         if (ord(x) < 128):
