@@ -1,7 +1,6 @@
 import datetime as dt
 import matplotlib.pyplot as plt
-import random
-import Connection
+from Connection import light_list
 
 """
 Lichtintensiteit per 60 seconden
@@ -14,18 +13,15 @@ ys2 = []
 
 def animate2(i, xs2, ys2):
 
-    #TODO Hier moet de lichtintensiteit gelezen worden
-    licht = random.randint(50, 130)
+    licht = 0
+    if (light_list.keys().__contains__('2')):
+        temp = light_list['2']
+        licht = temp[-1]
 
     # Tijd toevoegen aan x-as
     xs2.append(dt.datetime.now().strftime('%H:%M:%S'))
-
-    result = 0
-    if (Connection.temperature_list.keys().__contains__('2')):
-        temp = Connection.temperature_list['2']
-        result = temp[-1]
     # Lichtintensiteit toevoegen aan y-as
-    ys2.append(result)
+    ys2.append(licht)
 
     # Niet meer dan 20 waarden tegelijk in beeld
     xs2 = xs2[-20:]
